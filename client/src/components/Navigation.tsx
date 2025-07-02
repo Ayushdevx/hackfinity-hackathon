@@ -51,7 +51,7 @@ const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">H</span>
             </div>
-            <span className="text-white font-bold text-xl">Hackfinity</span>
+            <span className="font-title text-white font-bold text-xl">Hackfinity</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -62,7 +62,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection(item.href)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                className="font-body text-gray-300 hover:text-white transition-colors duration-200 font-medium"
               >
                 {item.name}
               </motion.button>

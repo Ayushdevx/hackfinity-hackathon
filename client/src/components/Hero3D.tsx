@@ -1,6 +1,6 @@
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Text, OrbitControls, Float, Html } from "@react-three/drei";
+import { Text, OrbitControls, Float, Html, Sphere, MeshDistortMaterial, Stars, Environment } from "@react-three/drei";
 import { motion } from "framer-motion";
 import * as THREE from "three";
 import ParticleSystem from "./ParticleSystem";
@@ -8,38 +8,92 @@ import FloatingObjects from "./FloatingObjects";
 
 const Hero3D = () => {
   const groupRef = useRef<THREE.Group>(null);
+  const sphereRef = useRef<THREE.Mesh>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Create gradient material for text
   const titleMaterial = useMemo(() => {
-    const material = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#8b5cf6"),
+    const material = new THREE.MeshStandardMaterial({
+      color: new THREE.Color("#ffffff"),
+      metalness: 0.8,
+      roughness: 0.2,
+      emissive: new THREE.Color("#8b5cf6"),
+      emissiveIntensity: 0.3,
     });
     return material;
   }, []);
 
   const subtitleMaterial = useMemo(() => {
-    const material = new THREE.MeshBasicMaterial({
+    const material = new THREE.MeshStandardMaterial({
       color: new THREE.Color("#06b6d4"),
+      metalness: 0.6,
+      roughness: 0.3,
+      emissive: new THREE.Color("#06b6d4"),
+      emissiveIntensity: 0.2,
     });
     return material;
+  }, []);
+
+  // Track mouse position for interactive effects
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({
+        x: (event.clientX / window.innerWidth) * 2 - 1,
+        y: -(event.clientY / window.innerHeight) * 2 + 1,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      groupRef.current.rotation.x = mousePosition.y * 0.05;
+      groupRef.current.rotation.z = mousePosition.x * 0.02;
+    }
+    
+    if (sphereRef.current) {
+      sphereRef.current.rotation.x = state.clock.elapsedTime * 0.2;
+      sphereRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      sphereRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.5) * 2;
+      sphereRef.current.position.z = Math.cos(state.clock.elapsedTime * 0.5) * 2;
     }
   });
 
   return (
     <>
-      {/* Ambient and directional lighting */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <pointLight position={[-10, -10, -5]} color="#8b5cf6" intensity={0.5} />
-      <pointLight position={[10, -10, -5]} color="#06b6d4" intensity={0.5} />
+      {/* Advanced Lighting Setup */}
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[10, 10, 5]} intensity={1.2} castShadow />
+      <pointLight position={[-10, -10, -5]} color="#8b5cf6" intensity={0.8} />
+      <pointLight position={[10, -10, -5]} color="#06b6d4" intensity={0.8} />
+      <pointLight position={[0, 10, 0]} color="#ec4899" intensity={0.6} />
+      <spotLight position={[0, 20, 10]} angle={0.3} penumbra={1} intensity={1} color="#ffffff" />
 
-      {/* Particle Systems */}
-      <ParticleSystem count={500} />
+      {/* Environment and Stars */}
+      <Environment preset="night" />
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+
+      {/* Central Distortion Sphere */}
+      <Float speed={3} rotationIntensity={1} floatIntensity={2}>
+        <Sphere ref={sphereRef} args={[1.5, 64, 64]} position={[0, 0, -8]}>
+          <MeshDistortMaterial
+            color="#8b5cf6"
+            attach="material"
+            distort={0.6}
+            speed={2}
+            roughness={0.1}
+            metalness={0.8}
+            transparent
+            opacity={0.7}
+          />
+        </Sphere>
+      </Float>
+
+      {/* Enhanced Particle Systems */}
+      <ParticleSystem count={1000} />
       
       {/* Floating Objects */}
       <FloatingObjects />

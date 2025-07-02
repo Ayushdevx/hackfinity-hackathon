@@ -5,51 +5,54 @@ const Features = () => {
   const features = [
     {
       icon: Trophy,
-      title: "Huge Prize Pool",
-      description: "Compete for substantial rewards and recognition that can launch your career",
+      title: "Massive $100K+ Prize Pool",
+      description: "Life-changing rewards including cash prizes, startup funding, job offers, and international recognition that can transform your career trajectory",
       gradient: "from-yellow-500 to-orange-500",
-      stats: "$50K+",
-      delay: 0.1
+      stats: "$100K+",
+      delay: 0.1,
+      highlight: true
     },
     {
       icon: Gift,
-      title: "Amazing Swags",
-      description: "Exclusive merchandise, gadgets, and goodies from our premium sponsors",
+      title: "Premium Swag & Perks",
+      description: "Exclusive limited-edition merchandise, latest tech gadgets, premium software licenses, and VIP access to future events",
       gradient: "from-pink-500 to-rose-500",
-      stats: "Premium",
+      stats: "Exclusive",
       delay: 0.2
     },
     {
       icon: Users,
-      title: "Top Mentors",
-      description: "Learn from industry experts and seasoned professionals",
+      title: "World-Class Mentors",
+      description: "Get guidance from CTOs of unicorn startups, AI researchers from top universities, and founders of billion-dollar companies",
       gradient: "from-blue-500 to-indigo-500",
-      stats: "50+ Experts",
+      stats: "100+ Industry Leaders",
       delay: 0.3
     },
     {
       icon: Network,
-      title: "Global Networking",
-      description: "Connect with developers, entrepreneurs, and innovators worldwide",
+      title: "Global Innovation Network",
+      description: "Join an elite community of 10,000+ top developers, entrepreneurs, VCs, and innovators from 50+ countries",
       gradient: "from-green-500 to-emerald-500",
-      stats: "1000+ Participants",
-      delay: 0.4
+      stats: "10K+ Elite Network",
+      delay: 0.4,
+      highlight: true
     },
     {
       icon: Zap,
-      title: "Cutting-edge Challenges",
-      description: "Work on real-world problems with the latest technologies",
+      title: "Next-Gen AI Challenges",
+      description: "Tackle cutting-edge problems in AGI, autonomous systems, quantum computing, and breakthrough technologies shaping the future",
       gradient: "from-purple-500 to-violet-500",
-      stats: "AI-Powered",
+      stats: "Breakthrough Tech",
       delay: 0.5
     },
     {
       icon: Rocket,
-      title: "Infinite Creative Freedom",
-      description: "No limits on innovation - bring your wildest ideas to life",
+      title: "Unlimited Innovation Potential",
+      description: "No restrictions on creativity - access to $1M+ worth of cloud credits, premium APIs, and experimental technologies",
       gradient: "from-cyan-500 to-blue-500",
-      stats: "Unlimited",
-      delay: 0.6
+      stats: "$1M+ Resources",
+      delay: 0.6,
+      highlight: true
     }
   ];
 
@@ -92,12 +95,12 @@ const Features = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="font-title text-5xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Why Choose Hackfinity?
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="font-body text-xl text-gray-300 max-w-3xl mx-auto">
             Experience the ultimate hackathon with unmatched opportunities and resources
           </p>
         </motion.div>
@@ -152,16 +155,16 @@ const Features = () => {
                       <feature.icon className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-right">
-                      <div className="text-white/60 text-sm">Value</div>
-                      <div className="text-white font-bold text-lg">{feature.stats}</div>
+                      <div className="font-body text-white/60 text-sm">Value</div>
+                      <div className="font-title text-white font-bold text-lg">{feature.stats}</div>
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="font-title text-2xl font-bold text-white mb-4">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-white/90 leading-relaxed">
+                  <p className="font-body text-white/90 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -207,10 +210,10 @@ const Features = () => {
           className="text-center"
         >
           <div className="bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-3xl p-8 border border-purple-500/20 backdrop-blur-sm">
-            <h3 className="text-3xl font-bold text-white mb-4">
+            <h3 className="font-title text-3xl font-bold text-white mb-4">
               Ready to Experience the Ultimate Hackathon?
             </h3>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="font-body text-gray-300 mb-8 max-w-2xl mx-auto">
               Join thousands of developers in the most exciting Agentic AI Hackathon ever organized
             </p>
             <motion.button

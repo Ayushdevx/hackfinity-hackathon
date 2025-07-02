@@ -92,12 +92,12 @@ const DomainShowcase = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="font-title text-5xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Innovation Domains
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="font-body text-xl text-gray-300 max-w-3xl mx-auto">
             Explore the cutting-edge fields where tomorrow's breakthrough solutions are born
           </p>
         </motion.div>
@@ -139,11 +139,11 @@ const DomainShowcase = () => {
                     <domain.icon className="w-6 h-6 text-white" />
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-3">
+                  <h3 className="font-title text-xl font-bold text-white mb-3">
                     {domain.title}
                   </h3>
                   
-                  <p className="text-white/90 text-sm leading-relaxed">
+                  <p className="font-body text-white/90 text-sm leading-relaxed">
                     {domain.description}
                   </p>
                 </div>
