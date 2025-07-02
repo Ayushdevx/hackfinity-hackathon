@@ -65,28 +65,32 @@ function App() {
           <Navigation />
           
           {/* Hero Section with 3D Canvas */}
-          <section id="hero" className="relative h-screen">
-            <Canvas
-              camera={{
-                position: [0, 0, 8],
-                fov: 45,
-                near: 0.1,
-                far: 1000
-              }}
-              gl={{
-                antialias: true,
-                powerPreference: "high-performance"
-              }}
-              dpr={[1, 2]}
-            >
-              <color attach="background" args={["#0a0a0a"]} />
-              <Suspense fallback={null}>
-                <Hero3D />
-              </Suspense>
-            </Canvas>
+          <section id="hero" className="relative h-screen overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+            {/* 3D Background Canvas */}
+            <div className="absolute inset-0 z-0 opacity-80">
+              <Canvas
+                camera={{
+                  position: [0, 0, 8],
+                  fov: 45,
+                  near: 0.1,
+                  far: 1000
+                }}
+                gl={{
+                  antialias: true,
+                  powerPreference: "high-performance",
+                  alpha: true
+                }}
+                dpr={[1, 2]}
+              >
+                <color attach="background" args={["transparent"]} />
+                <Suspense fallback={null}>
+                  <Hero3D />
+                </Suspense>
+              </Canvas>
+            </div>
             
-            {/* Fallback Overlay UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+            {/* Main Overlay UI */}
+            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
