@@ -50,7 +50,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-t from-black via-purple-950/30 to-black border-t border-purple-500/20 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 mb-16">
           
           {/* Brand Section */}
           <motion.div
@@ -58,10 +58,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2"
+            className="lg:col-span-3"
           >
             <motion.h3 
-              className="font-title text-4xl font-bold text-white mb-4"
+              className="font-title text-4xl font-bold text-white mb-4 pr-10"
               whileHover={{ scale: 1.05 }}
             >
               <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
@@ -115,6 +115,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-xs pl-10 pr-7"
           >
             <h4 className="font-title text-xl font-bold text-white mb-6">Quick Links</h4>
             <ul className="space-y-4">
@@ -145,9 +146,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            className="pl-10 items-start justify-self-start"
           >
-            <h4 className="font-title text-xl font-bold text-white mb-6">Get in Touch</h4>
-            <div className="space-y-6">
+            <h4 className="font-title text-xl font-bold text-white mb-6 pl-10">Get in Touch</h4>
+            <div className="space-y-6 pl-10">
               {contactInfo.map((contact, index) => (
                 <motion.div
                   key={contact.label}
@@ -160,14 +162,14 @@ const Footer = () => {
                   <motion.a
                     href={contact.href}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-purple-900/30 to-cyan-900/30 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
+                    className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-purple-900/30 to-cyan-900/30 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 w-full max-w-xs md:max-w-sm"
                   >
                     <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl">
                       <contact.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <div className="text-sm text-purple-300 font-semibold">{contact.label}</div>
-                      <div className="font-body text-white group-hover:text-purple-300 transition-colors">
+                      <div className="font-body text-white group-hover:text-purple-300 transition-colors truncate">
                         {contact.value}
                       </div>
                     </div>

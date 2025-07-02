@@ -584,281 +584,259 @@ const SponsorCTA = () => {
             Each tier designed to maximize your impact and ROI in the AI innovation ecosystem
           </motion.p>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
             {sponsorshipTiers.map((tier, index) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 100, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
-                  type: "spring",
-                  bounce: 0.4
-                }}
-                whileHover={{ 
-                  scale: tier.highlighted ? 1.02 : 1.05, 
-                  rotateY: 5,
-                  z: 100
-                }}
-                onClick={() => setSelectedTier(selectedTier === index ? null : index)}
-                className={`
-                  group relative cursor-pointer
-                  ${tier.highlighted ? 'lg:scale-110 lg:-mt-8' : ''}
-                  ${selectedTier === index ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''}
-                `}
-              >
-                <div className={`
-                  relative p-8 rounded-3xl bg-gradient-to-br ${tier.gradient}/20
-                  border-2 ${selectedTier === index ? 'border-yellow-400' : 'border-white/10'} 
-                  backdrop-blur-xl shadow-2xl transition-all duration-500 h-full
-                  overflow-hidden
-                `}>
-                  {/* Animated background glow */}
+              <div className="relative flex flex-col items-center">
+                {tier.highlighted && (
                   <motion.div 
-                    className={`absolute inset-0 bg-gradient-to-br ${tier.gradient} opacity-0 blur-xl`}
-                    animate={{ 
-                      opacity: selectedTier === index ? 0.4 : tier.highlighted ? 0.2 : 0.1,
-                      scale: selectedTier === index ? 1.2 : 1
-                    }}
-                    transition={{ duration: 0.5 }}
-                  />
-
-                  {/* Tier badge */}
-                  {tier.highlighted && (
-                    <motion.div 
-                      className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-2 shadow-xl">
-                        <Crown className="w-4 h-4" />
-                        <span>{tier.badge}</span>
-                        <Sparkles className="w-4 h-4" />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Availability indicator */}
-                  <motion.div 
-                    className="absolute top-4 right-4 z-20"
-                    animate={{ scale: [1, 1.1, 1] }}
+                    className="absolute -top-6 left-0 z-30"
+                    animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <div className={`
-                      px-3 py-1 rounded-full text-xs font-bold
-                      ${tier.tier === 'legendary' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
-                        tier.tier === 'innovation' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
-                        'bg-blue-500/20 text-blue-400 border border-blue-500/30'}
-                    `}>
-                      🔥 {tier.spots}
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-2 shadow-xl">
+                      <Crown className="w-4 h-4" />
+                      <span>{tier.badge}</span>
+                      <Sparkles className="w-4 h-4" />
                     </div>
                   </motion.div>
-                  
-                  <div className="relative z-10">
-                    {/* Icon with animation */}
+                )}
+                <motion.div
+                  key={tier.name}
+                  initial={{ opacity: 0, y: 100, rotateX: -15 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.2,
+                    type: "spring",
+                    bounce: 0.4
+                  }}
+                  whileHover={{ 
+                    scale: tier.highlighted ? 1.02 : 1.05, 
+                    rotateY: 5,
+                    z: 100
+                  }}
+                  onClick={() => setSelectedTier(selectedTier === index ? null : index)}
+                  className={`
+                    group relative cursor-pointer flex flex-col w-full
+                    ${tier.highlighted ? 'lg:scale-110' : ''}
+                    ${selectedTier === index ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''}
+                  `}
+                >
+                  <div className={`
+                    relative p-8 rounded-3xl bg-gradient-to-br ${tier.gradient}/20
+                    border-2 ${selectedTier === index ? 'border-yellow-400' : 'border-white/10'} 
+                    backdrop-blur-xl shadow-2xl transition-all duration-500 flex flex-col h-full
+                  `}>
+                    {/* Animated background glow */}
                     <motion.div 
-                      className={`flex items-center justify-center w-20 h-20 bg-gradient-to-br ${tier.gradient} rounded-3xl mx-auto mb-6 shadow-xl`}
+                      className={`absolute inset-0 bg-gradient-to-br ${tier.gradient} opacity-0 blur-xl`}
                       animate={{ 
-                        rotate: selectedTier === index ? 360 : 0,
+                        opacity: selectedTier === index ? 0.4 : tier.highlighted ? 0.2 : 0.1,
                         scale: selectedTier === index ? 1.2 : 1
                       }}
-                      transition={{ duration: 0.6 }}
-                      whileHover={{ scale: 1.3, rotate: 180 }}
+                      transition={{ duration: 0.5 }}
+                    />
+
+                    {/* Availability indicator */}
+                    <motion.div 
+                      className="absolute top-4 right-4 z-20"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
                     >
-                      <tier.icon className="w-10 h-10 text-white" />
+                      <div className={`
+                        px-3 py-1 rounded-full text-xs font-bold
+                        ${tier.tier === 'legendary' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                          tier.tier === 'innovation' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
+                          'bg-blue-500/20 text-blue-400 border border-blue-500/30'}
+                      `}>
+                        🔥 {tier.spots}
+                      </div>
                     </motion.div>
                     
-                    <div className="text-center mb-8">
-                      <motion.h4 
-                        className="text-2xl md:text-3xl font-bold text-white mb-3"
+                    <div className="flex-1 flex flex-col justify-between">
+                      {/* Icon with animation */}
+                      <motion.div 
+                        className={`flex items-center justify-center w-20 h-20 bg-gradient-to-br ${tier.gradient} rounded-3xl mx-auto mb-6 shadow-xl`}
                         animate={{ 
-                          color: selectedTier === index ? "#fbbf24" : "#ffffff"
+                          rotate: selectedTier === index ? 360 : 0,
+                          scale: selectedTier === index ? 1.2 : 1
                         }}
+                        transition={{ duration: 0.6 }}
+                        whileHover={{ scale: 1.3, rotate: 180 }}
                       >
-                        {tier.name}
-                      </motion.h4>
+                        <tier.icon className="w-10 h-10 text-white" />
+                      </motion.div>
                       
-                      {/* Pricing with discount */}
-                      <div className="relative">
-                        {/* Discount badge */}
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.5 }}
-                          className="absolute -top-4 -right-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
-                        >
-                          {tier.discount}
-                        </motion.div>
-                        
-                        {/* Original price (crossed out) */}
-                        <motion.div 
-                          className="text-lg text-gray-400 line-through mb-1"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 0.7 }}
-                          transition={{ delay: 0.3 }}
-                        >
-                          {tier.originalPrice}
-                        </motion.div>
-                        
-                        {/* Current price */}
-                        <motion.div 
-                          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"
+                      <div className="text-center mb-8">
+                        <motion.h4 
+                          className="text-2xl md:text-3xl font-bold text-white mb-3"
                           animate={{ 
-                            scale: selectedTier === index ? 1.15 : 1,
-                            textShadow: selectedTier === index ? "0 0 20px rgba(16, 185, 129, 0.5)" : "none"
+                            color: selectedTier === index ? "#fbbf24" : "#ffffff"
                           }}
                         >
-                          {tier.price}
-                        </motion.div>
+                          {tier.name}
+                        </motion.h4>
                         
-                        {/* Savings indicator */}
-                        <motion.div 
-                          className="text-sm text-green-400 font-semibold mt-1"
-                          animate={{ opacity: [0.7, 1, 0.7] }}
+                        {/* Pricing with discount */}
+                        <div className="relative">
+                          {/* Discount badge */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="absolute -top-4 -right-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+                          >
+                            {tier.discount}
+                          </motion.div>
+                          
+                          {/* Original price (crossed out) */}
+                          <motion.div 
+                            className="text-lg text-gray-400 line-through mb-1"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.7 }}
+                            transition={{ delay: 0.3 }}
+                          >
+                            {tier.originalPrice}
+                          </motion.div>
+                          
+                          {/* Current price */}
+                          <motion.div 
+                            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"
+                            animate={{ 
+                              scale: selectedTier === index ? 1.15 : 1,
+                              textShadow: selectedTier === index ? "0 0 20px rgba(16, 185, 129, 0.5)" : "none"
+                            }}
+                          >
+                            {tier.price}
+                          </motion.div>
+                          
+                          {/* Savings indicator */}
+                          <motion.div 
+                            className="text-sm text-green-400 font-semibold mt-1"
+                            animate={{ opacity: [0.7, 1, 0.7] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          >
+                            💰 Save {tier.savings}
+                          </motion.div>
+                        </div>
+                        
+                        {/* Urgency indicator */}
+                        <motion.div
+                          className="mt-4 p-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-400/30 rounded-xl"
+                          animate={{ 
+                            backgroundColor: ["rgba(239, 68, 68, 0.1)", "rgba(239, 68, 68, 0.2)", "rgba(239, 68, 68, 0.1)"],
+                            borderColor: ["rgba(248, 113, 113, 0.3)", "rgba(248, 113, 113, 0.5)", "rgba(248, 113, 113, 0.3)"]
+                          }}
                           transition={{ duration: 2, repeat: Infinity }}
                         >
-                          💰 Save {tier.savings}
-                        </motion.div>
-                      </div>
-                      
-                      {/* Urgency indicator */}
-                      <motion.div
-                        className="mt-4 p-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-400/30 rounded-xl"
-                        animate={{ 
-                          backgroundColor: ["rgba(239, 68, 68, 0.1)", "rgba(239, 68, 68, 0.2)", "rgba(239, 68, 68, 0.1)"],
-                          borderColor: ["rgba(248, 113, 113, 0.3)", "rgba(248, 113, 113, 0.5)", "rgba(248, 113, 113, 0.3)"]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        <div className="text-red-300 text-sm font-bold flex items-center justify-center">
-                          <Clock className="w-4 h-4 mr-2" />
-                          {tier.urgency}
-                        </div>
-                        <div className="text-red-200 text-xs mt-1">
-                          Next price: {tier.nextPrice} (+{((parseInt(tier.nextPrice.replace(/[^0-9]/g, '')) - parseInt(tier.price.replace(/[^0-9]/g, ''))) / 1000).toFixed(0)}k more)
-                        </div>
-                      </motion.div>
-                      
-                      {/* Availability */}
-                      <motion.div
-                        className="mt-3 text-center"
-                        animate={{ opacity: [0.8, 1, 0.8] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      >
-                        <div className="text-yellow-400 text-sm font-bold">
-                          {tier.spots}
-                        </div>
-                      </motion.div>
-                    </div>
-                    
-                    {/* Features list with animations */}
-                    <motion.ul 
-                      className="space-y-3 mb-8"
-                      animate={{ height: selectedTier === index ? "auto" : "200px" }}
-                    >
-                      {tier.features.slice(0, selectedTier === index ? tier.features.length : 5).map((feature, featureIndex) => (
-                        <motion.li 
-                          key={featureIndex} 
-                          className="flex items-start space-x-3 text-white/90"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: featureIndex * 0.1 }}
-                          whileHover={{ x: 5, color: "#fbbf24" }}
-                        >
-                          <motion.div 
-                            className="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"
-                            animate={{ scale: [1, 1.5, 1] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.2 }}
-                          />
-                          <span className="font-body text-sm leading-relaxed">{feature}</span>
-                        </motion.li>
-                      ))}
-                      
-                      {tier.features.length > 5 && selectedTier !== index && (
-                        <motion.li 
-                          className="text-yellow-400 font-semibold text-sm cursor-pointer"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          + {tier.features.length - 5} more amazing features...
-                        </motion.li>
-                      )}
-                    </motion.ul>
-                    
-                    {/* ROI guarantee */}
-                    <motion.div 
-                      className="mb-8 p-4 bg-green-500/10 border border-green-500/20 rounded-xl relative overflow-hidden"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10"
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      />
-                      <div className="relative z-10">
-                        <div className="text-green-400 text-xs font-bold mb-2 flex items-center">
-                          <Trophy className="w-4 h-4 mr-2" />
-                          💰 ROI GUARANTEE
-                        </div>
-                        <div className="text-green-300 text-sm font-semibold">{tier.roi}</div>
-                      </div>
-                    </motion.div>
-                    
-                    {/* CTA Button */}
-                    <motion.button
-                      whileHover={{ 
-                        scale: 1.05,
-                        boxShadow: "0 20px 40px rgba(255, 255, 255, 0.1)"
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setInteractionCount(prev => prev + 1);
-                        if (interactionCount >= 2) {
-                          setShowConfetti(true);
-                          setTimeout(() => setShowConfetti(false), 3000);
-                        }
-                      }}
-                      className={`
-                        w-full py-4 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden
-                        ${selectedTier === index 
-                          ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg shadow-yellow-400/25' 
-                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40'
-                        }
-                      `}
-                    >
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                      <span className="relative z-10 flex items-center justify-center space-x-2">
-                        <span>Choose {tier.name.split(' ')[1]}</span>
-                        <ArrowRight className="w-5 h-5" />
-                      </span>
-                    </motion.button>
-
-                    {/* Interaction encouragement */}
-                    <AnimatePresence>
-                      {selectedTier === index && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20 }}
-                          className="mt-4 text-center"
-                        >
-                          <div className="text-yellow-400 text-sm font-semibold flex items-center justify-center space-x-2">
-                            <Sparkles className="w-4 h-4" />
-                            <span>Perfect choice! Let's make it happen!</span>
-                            <Sparkles className="w-4 h-4" />
+                          <div className="text-red-300 text-sm font-bold flex items-center justify-center">
+                            <Clock className="w-4 h-4 mr-2" />
+                            {tier.urgency}
+                          </div>
+                          <div className="text-red-200 text-xs mt-1">
+                            Next price: {tier.nextPrice} (+{((parseInt(tier.nextPrice.replace(/[^0-9]/g, '')) - parseInt(tier.price.replace(/[^0-9]/g, ''))) / 1000).toFixed(0)}k more)
                           </div>
                         </motion.div>
-                      )}
-                    </AnimatePresence>
+                        
+                        {/* Availability */}
+                        <motion.div
+                          className="mt-3 text-center"
+                          animate={{ opacity: [0.8, 1, 0.8] }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        >
+                          <div className="text-yellow-400 text-sm font-bold">
+                            {tier.spots}
+                          </div>
+                        </motion.div>
+                      </div>
+                      
+                      {/* Features list with animations */}
+                      <motion.ul 
+                        className="space-y-3 mb-16 pb-8"
+                        animate={{ height: selectedTier === index ? "auto" : "200px" }}
+                      >
+                        {tier.features.slice(0, selectedTier === index ? tier.features.length : 5).map((feature, featureIndex) => (
+                          <motion.li 
+                            key={featureIndex} 
+                            className="flex items-start space-x-3 text-white/90"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: featureIndex * 0.1 }}
+                            whileHover={{ x: 5, color: "#fbbf24" }}
+                          >
+                            <motion.div 
+                              className="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"
+                              animate={{ scale: [1, 1.5, 1] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.2 }}
+                            />
+                            <span className="font-body text-sm leading-relaxed">{feature}</span>
+                          </motion.li>
+                        ))}
+                        {tier.features.length > 5 && selectedTier !== index && (
+                          <motion.li 
+                            className="text-yellow-400 font-semibold text-sm cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            + {tier.features.length - 5} more amazing features...
+                          </motion.li>
+                        )}
+                      </motion.ul>
+                      {/* ROI guarantee - above CTA button */}
+                      <motion.div 
+                        className="mt-20 mb-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl relative overflow-hidden"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <motion.div 
+                          className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-emerald-400/10"
+                          animate={{ x: ["-100%", "100%"] }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        />
+                        <div className="relative z-10">
+                          <div className="text-green-400 text-xs font-bold mb-2 flex items-center">
+                            <Trophy className="w-4 h-4 mr-2" />
+                            💰 ROI GUARANTEE
+                          </div>
+                          <div className="text-green-300 text-sm font-semibold">{tier.roi}</div>
+                        </div>
+                      </motion.div>
+                      {/* CTA Button - always last */}
+                      <motion.button
+                        whileHover={{ 
+                          scale: 1.05,
+                          boxShadow: "0 20px 40px rgba(255, 255, 255, 0.1)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInteractionCount(prev => prev + 1);
+                          if (interactionCount >= 2) {
+                            setShowConfetti(true);
+                            setTimeout(() => setShowConfetti(false), 3000);
+                          }
+                        }}
+                        className={`
+                          w-full py-4 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden
+                          ${selectedTier === index 
+                            ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg shadow-yellow-400/25' 
+                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40'
+                          }
+                        `}
+                      >
+                        <motion.div 
+                          className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                          animate={{ x: ["-100%", "100%"] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                        <span className="relative z-10 flex items-center justify-center space-x-2">
+                          <span>Choose {tier.name.split(' ')[1]}</span>
+                          <ArrowRight className="w-5 h-5" />
+                        </span>
+                      </motion.button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
           </div>
 
@@ -1051,7 +1029,6 @@ const SponsorCTA = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
                 <span className="relative z-10 flex items-center space-x-3">
-                  <Rocket className="w-6 h-6" />
                   <span>Become a Legend Sponsor</span>
                   <Diamond className="w-6 h-6" />
                 </span>
