@@ -214,59 +214,179 @@ const DomainShowcase = () => {
             Explore cutting-edge technologies where breakthrough solutions are born
           </motion.p>
           
-          {/* Countdown Timer */}
+          {/* Enhanced Countdown Timer with Interactive Elements */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="bg-gradient-to-r from-purple-900/50 to-cyan-900/50 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 max-w-4xl mx-auto"
+            className="relative bg-gradient-to-r from-purple-900/60 via-pink-900/60 to-cyan-900/60 backdrop-blur-xl rounded-3xl p-10 border border-purple-500/30 max-w-5xl mx-auto shadow-2xl overflow-hidden"
           >
-            <div className="flex items-center justify-center mb-6">
-              <Calendar className="w-8 h-8 text-purple-400 mr-3" />
-              <h3 className="font-title text-2xl font-bold text-white">
-                🔥 MAIN EVENT COUNTDOWN
-              </h3>
-            </div>
+            {/* Animated background overlay */}
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-purple-400/10 via-pink-400/10 to-cyan-400/10"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { label: 'Days', value: timeLeft.days },
-                { label: 'Hours', value: timeLeft.hours },
-                { label: 'Minutes', value: timeLeft.minutes },
-                { label: 'Seconds', value: timeLeft.seconds }
-              ].map((item, index) => (
+            {/* Floating particles */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(20)].map((_, i) => (
                 <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="bg-gradient-to-br from-purple-600 to-cyan-600 rounded-2xl p-4 mb-2 shadow-lg">
-                    <motion.div 
-                      className="text-3xl md:text-4xl font-bold text-white"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    >
-                      {item.value.toString().padStart(2, '0')}
-                    </motion.div>
-                  </div>
-                  <div className="text-purple-300 font-semibold text-sm uppercase tracking-wider">
-                    {item.label}
-                  </div>
-                </motion.div>
+                  key={i}
+                  className={`absolute w-2 h-2 rounded-full ${
+                    i % 3 === 0 ? 'bg-purple-400' :
+                    i % 3 === 1 ? 'bg-pink-400' : 'bg-cyan-400'
+                  } opacity-60`}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-10, -40],
+                    x: [0, Math.random() * 30 - 15],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 3,
+                    ease: "easeInOut"
+                  }}
+                />
               ))}
             </div>
             
-            <motion.div 
-              className="mt-6 text-cyan-400 font-semibold text-lg"
-              animate={{ opacity: [1, 0.7, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              October 18, 2025 • 9:00 AM UTC
-            </motion.div>
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-8">
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                >
+                  <Calendar className="w-10 h-10 text-purple-400 mr-4" />
+                </motion.div>
+                <motion.h3 
+                  className="font-title text-3xl md:text-4xl font-bold text-white"
+                  animate={{ scale: [1, 1.02, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                    🔥 EPIC COUNTDOWN TO INNOVATION
+                  </span>
+                </motion.h3>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {[
+                  { label: 'Days', value: timeLeft.days, color: 'purple', emoji: '📅' },
+                  { label: 'Hours', value: timeLeft.hours, color: 'pink', emoji: '⏰' },
+                  { label: 'Minutes', value: timeLeft.minutes, color: 'cyan', emoji: '⚡' },
+                  { label: 'Seconds', value: timeLeft.seconds, color: 'orange', emoji: '🚀' }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 + index * 0.1 }}
+                    className="text-center group cursor-pointer"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <motion.div 
+                      className={`bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 rounded-3xl p-6 mb-4 shadow-2xl group-hover:shadow-${item.color}-500/50 transition-all duration-500 relative overflow-hidden border border-${item.color}-400/30`}
+                      animate={{ 
+                        boxShadow: [
+                          `0 10px 25px -5px rgba(168, 85, 247, 0.3)`,
+                          `0 20px 40px -10px rgba(168, 85, 247, 0.5)`,
+                          `0 10px 25px -5px rgba(168, 85, 247, 0.3)`
+                        ]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
+                      {/* Rotating shine effect */}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                        style={{ 
+                          background: `conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent)`
+                        }}
+                      />
+                      
+                      <div className="relative z-10">
+                        <motion.div 
+                          className="text-2xl mb-2"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          {item.emoji}
+                        </motion.div>
+                        <motion.div 
+                          className="text-4xl md:text-5xl font-bold text-white"
+                          animate={{ 
+                            scale: item.label === 'Seconds' ? [1, 1.15, 1] : [1, 1.05, 1],
+                            color: item.label === 'Seconds' ? ['#ffffff', '#fbbf24', '#ffffff'] : '#ffffff'
+                          }}
+                          transition={{ 
+                            duration: item.label === 'Seconds' ? 1 : 2.5, 
+                            repeat: Infinity 
+                          }}
+                        >
+                          {item.value.toString().padStart(2, '0')}
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                    <motion.div 
+                      className={`text-${item.color}-300 font-bold text-lg uppercase tracking-wider group-hover:text-white transition-colors duration-300`}
+                      animate={{ opacity: [0.8, 1, 0.8] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {item.label}
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <motion.div 
+                className="mt-10 text-center"
+                animate={{ opacity: [1, 0.8, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-white mb-3"
+                  animate={{ scale: [1, 1.03, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  🌟 October 18, 2025 • 9:00 AM UTC 🌟
+                </motion.div>
+                <div className="text-cyan-400 text-xl font-semibold mb-2">
+                  The Moment That Will Define AI's Future
+                </div>
+                <motion.div 
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 rounded-full text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  animate={{ 
+                    boxShadow: [
+                      '0 10px 20px rgba(251, 191, 36, 0.3)',
+                      '0 15px 30px rgba(251, 191, 36, 0.5)',
+                      '0 10px 20px rgba(251, 191, 36, 0.3)'
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <span>🎯 Secure Your Legendary Spot</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
 

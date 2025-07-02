@@ -148,7 +148,7 @@ function App() {
                   </p>
                   <div className="font-body flex flex-wrap justify-center gap-4 text-sm">
                     <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full border border-purple-500/30">
-                      🚀 $100K+ Prize Pool
+                      🚀 ₹100K+ Prize Pool
                     </span>
                     <span className="bg-cyan-500/20 text-cyan-300 px-4 py-2 rounded-full border border-cyan-500/30">
                       🎯 10K+ Participants

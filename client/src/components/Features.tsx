@@ -5,10 +5,10 @@ const Features = () => {
   const features = [
     {
       icon: Trophy,
-      title: "Massive $100K+ Prize Pool",
+      title: "Massive ₹100K+ Prize Pool",
       description: "Life-changing rewards including cash prizes, startup funding, job offers, and international recognition that can transform your career trajectory",
       gradient: "from-yellow-500 to-orange-500",
-      stats: "$100K+",
+      stats: "₹100K+",
       delay: 0.1,
       highlight: true
     },
@@ -50,7 +50,7 @@ const Features = () => {
       title: "Unlimited Innovation Potential",
       description: "No restrictions on creativity - access to $1M+ worth of cloud credits, premium APIs, and experimental technologies",
       gradient: "from-cyan-500 to-blue-500",
-      stats: "$1M+ Resources",
+      stats: "₹1M+ Resources",
       delay: 0.6,
       highlight: true
     }
