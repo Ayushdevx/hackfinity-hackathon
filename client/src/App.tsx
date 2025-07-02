@@ -65,9 +65,9 @@ function App() {
           <Navigation />
           
           {/* Hero Section with 3D Canvas */}
-          <section id="hero" className="relative h-screen overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+          <section id="hero" className="relative h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-purple-900">
             {/* 3D Background Canvas */}
-            <div className="absolute inset-0 z-0 opacity-80">
+            <div className="absolute inset-0 z-0 opacity-70">
               <Canvas
                 camera={{
                   position: [0, 0, 8],
@@ -82,7 +82,6 @@ function App() {
                 }}
                 dpr={[1, 2]}
               >
-                <color attach="background" args={["transparent"]} />
                 <Suspense fallback={null}>
                   <Hero3D />
                 </Suspense>
@@ -90,7 +89,7 @@ function App() {
             </div>
             
             {/* Main Overlay UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-20">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
