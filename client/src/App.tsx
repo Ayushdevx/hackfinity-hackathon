@@ -9,6 +9,7 @@ import Timeline from "./components/Timeline";
 import Features from "./components/Features";
 import SponsorCTA from "./components/SponsorCTA";
 import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
 import { useAudio } from "./lib/stores/useAudio";
 import "@fontsource/inter";
 
@@ -230,27 +231,8 @@ function App() {
             <ContactForm />
           </section>
 
-          {/* Footer */}
-          <footer className="bg-black border-t border-purple-900/20 py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center">
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-3xl font-bold text-white mb-4"
-                >
-                  Hackfinity
-                </motion.h3>
-                <p className="text-purple-400 mb-6">
-                  The world's biggest Agentic AI Hackathon
-                </p>
-                <p className="text-gray-400 text-sm">
-                  © 2025 Hackfinity. All rights reserved.
-                </p>
-              </div>
-            </div>
-          </footer>
+          {/* Enhanced Footer */}
+          <Footer />
         </>
       )}
     </div>
