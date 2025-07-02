@@ -44,20 +44,20 @@ const ContactForm = () => {
     {
       icon: Mail,
       title: "Email Us",
-      info: "hello@hackfinity.com",
-      subinfo: "sponsors@hackfinity.com"
+      info: "hackfinity.innovation@gmail.com",
+      subinfo: "hackfinity.innovation@gmail.com"
     },
     {
       icon: Phone,
       title: "Call Us",
-      info: "+1 (555) 123-4567",
+      info: "+91 9305183418",
       subinfo: "Mon-Fri 9AM-6PM EST"
     },
     {
       icon: MapPin,
       title: "Location",
       info: "Virtual & Global",
-      subinfo: "Online Platform"
+      subinfo: "We operate online, connecting innovators worldwide"
     }
   ];
 

@@ -1,8 +1,39 @@
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Float, Sphere, Box, Torus } from "@react-three/drei";
-import { Brain, Cpu, Link, Lightbulb, GraduationCap, DollarSign, Heart, Plus, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
+
+// Reusable 3D-Like Emoji Icon Component
+interface EmojiIconProps {
+  symbol: string;
+  size?: string;
+  color?: string;
+  glow?: boolean;
+  className?: string;
+}
+
+const EmojiIcon = ({ 
+  symbol, 
+  size = "text-5xl", 
+  color = "text-purple-400", 
+  glow = false,
+  className = ""
+}: EmojiIconProps) => {
+  return (
+    <div
+      className={`${size} ${color} ${glow ? "drop-shadow-lg" : ""} ${className} transform transition-transform duration-300`}
+      style={glow ? { 
+        textShadow: "0 0 20px rgba(147, 51, 234, 0.8), 0 4px 6px rgba(0, 0, 0, 0.2)",
+        filter: "drop-shadow(0 0 10px rgba(147, 51, 234, 0.6))"
+      } : {
+        textShadow: "0 4px 6px rgba(0, 0, 0, 0.2)"
+      }}
+    >
+      {symbol}
+    </div>
+  );
+};
 
 // 3D Icon Components
 const AI3DIcon = () => (
@@ -90,56 +121,56 @@ const DomainShowcase = () => {
 
   const domains = [
     {
-      icon: Brain,
+      emoji: "🧠",
       title: "Artificial Intelligence",
       description: "Build intelligent systems that learn and adapt",
       gradient: "from-purple-500 to-pink-500",
       component3D: AI3DIcon
     },
     {
-      icon: Cpu,
+      emoji: "⚙️",
       title: "Machine Learning",
       description: "Create algorithms that improve through experience",
       gradient: "from-blue-500 to-cyan-500",
       component3D: ML3DIcon
     },
     {
-      icon: Link,
+      emoji: "🔗",
       title: "Blockchain",
       description: "Develop decentralized solutions for tomorrow",
       gradient: "from-green-500 to-emerald-500",
       component3D: Blockchain3DIcon
     },
     {
-      icon: Lightbulb,
+      emoji: "💡",
       title: "Open Innovation",
       description: "Collaborate on groundbreaking open-source projects",
       gradient: "from-yellow-500 to-orange-500",
       component3D: Innovation3DIcon
     },
     {
-      icon: GraduationCap,
+      emoji: "🎓",
       title: "EdTech",
       description: "Transform education with technology",
       gradient: "from-indigo-500 to-purple-500",
       component3D: AI3DIcon
     },
     {
-      icon: DollarSign,
+      emoji: "📈",
       title: "FinTech",
       description: "Revolutionize financial services",
       gradient: "from-emerald-500 to-teal-500",
       component3D: ML3DIcon
     },
     {
-      icon: Heart,
+      emoji: "🩺",
       title: "Healthcare",
       description: "Innovate solutions for better health outcomes",
       gradient: "from-red-500 to-rose-500",
       component3D: Blockchain3DIcon
     },
     {
-      icon: Plus,
+      emoji: "✨",
       title: "Your Domain",
       description: "Bring your unique ideas to life",
       gradient: "from-violet-500 to-purple-500",
@@ -262,13 +293,33 @@ const DomainShowcase = () => {
                 backdrop-blur-xl border border-white/10 shadow-2xl
                 group-hover:border-white/20 transition-all duration-500 overflow-hidden h-80
               `}>
-                {/* 3D Icon */}
-                <div className="relative h-24 mb-6">
-                  <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-                    <ambientLight intensity={0.5} />
-                    <pointLight position={[10, 10, 10]} />
-                    <domain.component3D />
-                  </Canvas>
+                {/* Emoji Icon with 3D Background */}
+                <div className="relative h-24 mb-6 flex items-center justify-center">
+                  {/* 3D Background Effect */}
+                  <div className="absolute inset-0 opacity-30">
+                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                      <ambientLight intensity={0.5} />
+                      <pointLight position={[10, 10, 10]} />
+                      <domain.component3D />
+                    </Canvas>
+                  </div>
+                  
+                  {/* Emoji Icon Foreground */}
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.2, 
+                      rotateY: 15,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="relative z-10"
+                  >
+                    <EmojiIcon 
+                      symbol={domain.emoji}
+                      size="text-6xl md:text-7xl"
+                      glow={true}
+                      className="group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </motion.div>
                 </div>
 
                 {/* Content */}
