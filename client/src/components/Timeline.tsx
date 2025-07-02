@@ -1,269 +1,386 @@
-import { motion } from "framer-motion";
-import { Calendar, Users, FileText, Code, Lightbulb, Trophy, PartyPopper } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Calendar, Users, FileText, Code, Lightbulb, Trophy, PartyPopper, Clock, CheckCircle, Star } from "lucide-react";
+import { useRef, useState } from "react";
 
 const Timeline = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
   const events = [
     {
       icon: Calendar,
-      title: "Registration Opens",
+      title: "Early Bird Registration",
       date: "September 1, 2025",
-      time: "12:00 AM",
-      description: "Sign up and secure your spot in the world's biggest Agentic AI Hackathon",
+      time: "12:00 AM UTC",
+      description: "Secure your spot with exclusive early bird perks, mentor previews, and premium swag packages",
       status: "upcoming",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      countdown: "120 days left",
+      perks: ["🎁 Premium Swag Kit", "🚀 Early Mentor Access", "💎 VIP Discord Channel"]
     },
     {
       icon: Users,
-      title: "Team Formation",
+      title: "Team Formation & Networking",
       date: "October 1 - 15, 2025",
-      time: "Ongoing",
-      description: "Connect with like-minded developers and form your dream team",
+      time: "Continuous",
+      description: "Join exclusive Discord channels, attend virtual meetups, and form dream teams with AI matching algorithm",
       status: "upcoming",
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-green-500 to-emerald-500",
+      countdown: "90 days left",
+      perks: ["🤝 AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access"]
     },
     {
       icon: FileText,
-      title: "Problem Statements Release",
+      title: "Challenge Tracks Release",
       date: "October 16, 2025",
-      time: "6:00 PM",
-      description: "Discover the cutting-edge challenges and choose your battlefield",
+      time: "6:00 PM UTC",
+      description: "Unlock 8 revolutionary challenge tracks: AGI, Quantum AI, Neural Interfaces, and more cutting-edge frontiers",
       status: "upcoming",
-      gradient: "from-purple-500 to-violet-500"
+      gradient: "from-purple-500 to-violet-500",
+      countdown: "77 days left",
+      perks: ["🧠 8 Challenge Tracks", "🎯 $100K Prize Distribution", "🚀 Startup Founder Judges"]
     },
     {
       icon: Code,
-      title: "Hacking Phase Begins",
+      title: "🔥 MAIN EVENT: 24H Hack",
       date: "October 18, 2025",
-      time: "9:00 AM",
-      description: "24 hours of intense coding, innovation, and breakthrough solutions",
+      time: "9:00 AM UTC",
+      description: "The ultimate 24-hour coding marathon with live mentorship, real-time leaderboards, and breakthrough innovations",
       status: "highlight",
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-orange-500 to-red-500",
+      countdown: "75 days left",
+      perks: ["⚡ Live Coding Streams", "🏆 Real-time Leaderboard", "🎮 Surprise Challenges"]
     },
     {
       icon: Lightbulb,
-      title: "Mentoring Sessions",
+      title: "Expert Mentorship Hub",
       date: "Throughout Event",
-      time: "On-demand",
-      description: "Get guidance from industry experts and seasoned professionals",
+      time: "24/7 Available",
+      description: "Access to 100+ industry leaders including OpenAI researchers, unicorn founders, and VC partners",
       status: "ongoing",
-      gradient: "from-yellow-500 to-orange-500"
+      gradient: "from-yellow-500 to-orange-500",
+      countdown: "Always Active",
+      perks: ["🧠 100+ Expert Mentors", "💡 1-on-1 Sessions", "📈 VC Office Hours"]
     },
     {
       icon: Trophy,
-      title: "Judging & Evaluation",
+      title: "Grand Finale Judging",
       date: "October 19, 2025",
-      time: "10:00 AM - 2:00 PM",
-      description: "Present your solutions to expert judges and showcase your innovation",
+      time: "10:00 AM - 2:00 PM UTC",
+      description: "Present to legendary judges: Sam Altman, Demis Hassabis, and top VCs. Live-streamed to 100K+ viewers",
       status: "upcoming",
-      gradient: "from-pink-500 to-rose-500"
+      gradient: "from-pink-500 to-rose-500",
+      countdown: "74 days left",
+      perks: ["🌟 Celebrity Judges", "📺 100K+ Live Viewers", "💰 Instant Funding Offers"]
     },
     {
       icon: PartyPopper,
-      title: "Closing Ceremony",
+      title: "Victory Celebration",
       date: "October 19, 2025",
-      time: "4:00 PM",
-      description: "Celebrate achievements, announce winners, and network with the community",
+      time: "4:00 PM UTC",
+      description: "Epic closing ceremony with winner announcements, startup launch opportunities, and exclusive after-party",
       status: "upcoming",
-      gradient: "from-indigo-500 to-purple-500"
+      gradient: "from-indigo-500 to-purple-500",
+      countdown: "74 days left",
+      perks: ["🎊 Global Celebration", "🚀 Startup Launches", "🎉 Exclusive After-party"]
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -100,
-      scale: 0.8
-    },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section ref={containerRef} className="min-h-screen bg-gradient-to-b from-black via-purple-950/20 to-black py-24 relative overflow-hidden">
+      {/* Enhanced background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(59,130,246,0.05),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(168,85,247,0.05),transparent_50%)]" />
+      
+      {/* Animated floating particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-30, -120],
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+          className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Event Timeline
+          <motion.h2 
+            className="font-title text-6xl md:text-7xl font-bold text-white mb-8"
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, type: "spring", bounce: 0.4 }}
+          >
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+              Epic Timeline
             </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Your journey from registration to victory - every milestone mapped out
-          </p>
+          </motion.h2>
+          <motion.p 
+            className="font-body text-2xl text-gray-300 max-w-4xl mx-auto mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            Your legendary journey from idea to breakthrough. Every moment crafted for maximum impact and innovation.
+          </motion.p>
+          
+          {/* Interactive progress bar */}
+          <motion.div className="max-w-2xl mx-auto">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-purple-400 font-semibold">Journey Progress</span>
+              <span className="text-cyan-400 font-semibold">75 Days to Glory</span>
+            </div>
+            <div className="bg-gray-800/50 rounded-full p-1 backdrop-blur-sm border border-purple-500/20 relative overflow-hidden">
+              <motion.div 
+                className="h-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full relative"
+                initial={{ width: 0 }}
+                whileInView={{ width: "35%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 2, ease: "easeOut" }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-white/20 rounded-full"
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                />
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* Timeline */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="relative"
-        >
-          {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full opacity-30" />
+        {/* Enhanced Interactive Timeline */}
+        <div className="relative">
+          {/* Animated central timeline */}
+          <motion.div 
+            className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full"
+            style={{ height: "100%" }}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          />
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {events.map((event, index) => (
               <motion.div
                 key={event.title}
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  bounce: 0.3
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:space-x-8`}
+                } flex-col`}
               >
-                {/* Timeline dot */}
-                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-10 shadow-lg shadow-purple-500/50" />
+                {/* Animated Timeline Dot */}
+                <motion.div 
+                  className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
+                  whileHover={{ scale: 1.5 }}
+                  animate={{ 
+                    boxShadow: hoveredIndex === index 
+                      ? "0 0 30px rgba(168, 85, 247, 0.8)" 
+                      : "0 0 15px rgba(168, 85, 247, 0.4)"
+                  }}
+                >
+                  <motion.div
+                    className="absolute inset-1 rounded-full bg-white"
+                    animate={{ 
+                      scale: hoveredIndex === index ? [1, 1.2, 1] : 1 
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
 
-                {/* Content card */}
+                {/* Enhanced Event Card */}
                 <div className={`
                   w-full md:w-5/12 ml-20 md:ml-0 ${
-                    index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
+                    index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
                   }
                 `}>
                   <motion.div
                     whileHover={{ 
-                      rotateY: index % 2 === 0 ? 2 : -2,
-                      scale: 1.03,
-                      transition: { duration: 0.3 }
+                      scale: 1.05,
+                      rotateY: index % 2 === 0 ? 3 : -3,
+                      z: 50
                     }}
+                    transition={{ duration: 0.3 }}
                     className={`
-                      relative p-6 rounded-2xl bg-gradient-to-br ${event.gradient}
-                      shadow-2xl border border-white/10 backdrop-blur-sm
-                      transform-gpu
-                      ${event.status === 'highlight' ? 'ring-2 ring-yellow-400 ring-opacity-50' : ''}
+                      relative p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
+                      backdrop-blur-xl border border-white/10 shadow-2xl
+                      group overflow-hidden
+                      ${event.status === 'highlight' ? 'ring-2 ring-yellow-400/50' : ''}
                     `}
                   >
                     {/* Glow effect */}
-                    <div className={`
-                      absolute inset-0 rounded-2xl bg-gradient-to-br ${event.gradient}
-                      opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300
-                    `} />
+                    <motion.div 
+                      className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${event.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
+                      animate={hoveredIndex === index ? { opacity: 0.3 } : { opacity: 0 }}
+                    />
                     
+                    {/* Content */}
                     <div className="relative z-10">
-                      {/* Icon and status */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl backdrop-blur-sm">
-                          <event.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div className={`
-                          px-3 py-1 rounded-full text-xs font-semibold
-                          ${event.status === 'highlight' ? 'bg-yellow-400 text-black' : 
-                            event.status === 'ongoing' ? 'bg-green-400 text-black' : 
-                            'bg-white/20 text-white'
-                          }
-                        `}>
-                          {event.status === 'highlight' ? 'Main Event' :
-                           event.status === 'ongoing' ? 'Ongoing' : 'Upcoming'}
+                      {/* Header */}
+                      <div className="flex items-center justify-between mb-6">
+                        <motion.div 
+                          className="flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          <event.icon className="w-8 h-8 text-white" />
+                        </motion.div>
+                        <div className="flex flex-col items-end">
+                          <div className={`
+                            px-4 py-2 rounded-full text-sm font-bold mb-2
+                            ${event.status === 'highlight' ? 'bg-yellow-400 text-black' : 
+                              event.status === 'ongoing' ? 'bg-green-400 text-black' : 
+                              'bg-white/20 text-white'
+                            }
+                          `}>
+                            {event.status === 'highlight' ? '🔥 MAIN EVENT' :
+                             event.status === 'ongoing' ? '⚡ LIVE NOW' : '🚀 UPCOMING'}
+                          </div>
+                          <div className="text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full">
+                            {event.countdown}
+                          </div>
                         </div>
                       </div>
 
-                      {/* Title and date */}
-                      <h3 className="text-xl font-bold text-white mb-2">
+                      {/* Title */}
+                      <motion.h3 
+                        className="font-title text-2xl font-bold text-white mb-4"
+                        animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
+                      >
                         {event.title}
-                      </h3>
+                      </motion.h3>
                       
-                      <div className="flex items-center space-x-4 mb-3">
-                        <span className="text-white/90 font-semibold">
-                          {event.date}
-                        </span>
-                        <span className="text-white/70 text-sm">
-                          {event.time}
-                        </span>
+                      {/* Date & Time */}
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center space-x-2">
+                          <Calendar className="w-4 h-4 text-purple-400" />
+                          <span className="text-white font-semibold">
+                            {event.date}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Clock className="w-4 h-4 text-cyan-400" />
+                          <span className="text-white/80 text-sm">
+                            {event.time}
+                          </span>
+                        </div>
                       </div>
                       
-                      <p className="text-white/90 text-sm leading-relaxed">
+                      {/* Description */}
+                      <p className="font-body text-white/90 text-base leading-relaxed mb-6">
                         {event.description}
                       </p>
+
+                      {/* Perks */}
+                      <div className="space-y-2">
+                        <div className="text-sm font-semibold text-purple-400 mb-3">💎 EXCLUSIVE PERKS:</div>
+                        <div className="grid grid-cols-1 gap-2">
+                          {event.perks.map((perk, perkIndex) => (
+                            <motion.div
+                              key={perkIndex}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ delay: perkIndex * 0.1 }}
+                              className="flex items-center space-x-2 text-white/80 text-sm"
+                            >
+                              <Star className="w-3 h-3 text-yellow-400" />
+                              <span>{perk}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Floating particles */}
-                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                      {[...Array(3)].map((_, i) => (
+                    {/* Floating micro-particles */}
+                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                      {[...Array(5)].map((_, i) => (
                         <motion.div
                           key={i}
-                          className="absolute w-1 h-1 bg-white/30 rounded-full"
+                          className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
                           style={{
-                            left: `${20 + i * 25}%`,
-                            top: `${30 + i * 20}%`,
+                            left: `${20 + Math.random() * 60}%`,
+                            top: `${20 + Math.random() * 60}%`,
                           }}
                           animate={{
-                            y: [-10, 10, -10],
-                            opacity: [0.3, 0.8, 0.3],
+                            y: [-10, -30],
+                            opacity: [0, 1, 0],
+                            scale: [0, 1, 0],
                           }}
                           transition={{
-                            duration: 2 + i * 0.5,
+                            duration: 2 + Math.random(),
                             repeat: Infinity,
-                            ease: "easeInOut",
+                            delay: Math.random() * 2,
                           }}
                         />
                       ))}
                     </div>
                   </motion.div>
                 </div>
-
-                {/* Empty space for opposite side on desktop */}
-                <div className="hidden md:block w-5/12" />
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Call to action */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mt-20"
         >
-          <div className="bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-3xl p-8 border border-purple-500/20 backdrop-blur-sm">
-            <h3 className="text-3xl font-bold text-white mb-4">
-              Don't Miss Out on This Epic Journey!
-            </h3>
-            <p className="text-gray-300 mb-8">
-              Mark your calendars and prepare for 24 hours of innovation, learning, and fun
-            </p>
-            <motion.button
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
-            >
-              Add to Calendar
-            </motion.button>
-          </div>
+          <motion.button
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 20px 40px rgba(168, 85, 247, 0.3)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-12 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+          >
+            🗓️ Add to Calendar
+          </motion.button>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
