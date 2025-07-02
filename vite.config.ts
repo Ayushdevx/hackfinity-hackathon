@@ -25,15 +25,22 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
     sourcemap: false, // Disable sourcemaps for production
-    minify: 'terser', // Use terser for better minification
+    minify: 'esbuild', // Use esbuild instead of terser for better compatibility
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion'],
           three: ['three', '@react-three/fiber', '@react-three/drei'],
-          ui: ['lucide-react', '@radix-ui/react-slot']
+          ui: ['lucide-react']
         }
+      },
+      external: (id) => {
+        // Exclude problematic modules that use eval
+        if (id.includes('three-stdlib/libs/lottie')) {
+          return true;
+        }
+        return false;
       }
     },
     chunkSizeWarningLimit: 1000, // Increase chunk size warning limit
@@ -43,6 +50,10 @@ export default defineConfig({
   // Optimize dependencies
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'three', '@react-three/fiber', '@react-three/drei'],
-    exclude: ['@replit/vite-plugin-runtime-error-modal']
+    exclude: ['@replit/vite-plugin-runtime-error-modal', 'three-stdlib']
+  },
+  // Define global constants to avoid issues
+  define: {
+    global: 'globalThis',
   },
 });
