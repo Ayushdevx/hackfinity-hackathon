@@ -54,7 +54,6 @@ const Hero3D = () => {
             color="#ffffff"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter.json"
             material={titleMaterial}
           >
             HACKFINITY
@@ -69,7 +68,6 @@ const Hero3D = () => {
             color="#8b5cf6"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter.json"
           >
             Infinite Fun. Infinite Creativity.
           </Text>
@@ -83,7 +81,6 @@ const Hero3D = () => {
             color="#06b6d4"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter.json"
           >
             From Caffeine to Code – Experience the Best
           </Text>
@@ -97,7 +94,6 @@ const Hero3D = () => {
             color="#ffffff"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter.json"
           >
             October 18, 2025
           </Text>
@@ -111,7 +107,6 @@ const Hero3D = () => {
             color="#9ca3af"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter.json"
           >
             The World's Biggest Agentic AI Hackathon
           </Text>

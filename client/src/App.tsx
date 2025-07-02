@@ -84,6 +84,66 @@ function App() {
                 <Hero3D />
               </Suspense>
             </Canvas>
+            
+            {/* Fallback Overlay UI */}
+            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+              <div className="text-center">
+                <motion.h1
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-6xl md:text-8xl font-bold text-white mb-6 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+                >
+                  HACKFINITY
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                  className="text-2xl text-purple-300 mb-4"
+                >
+                  Infinite Fun. Infinite Creativity.
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.8 }}
+                  className="text-xl text-cyan-400 mb-6"
+                >
+                  From Caffeine to Code – Experience the Best
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1, duration: 0.8 }}
+                  className="text-3xl font-bold text-white mb-4"
+                >
+                  October 18, 2025
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.3, duration: 0.8 }}
+                  className="text-lg text-gray-300 mb-8"
+                >
+                  The World's Biggest Agentic AI Hackathon
+                </motion.p>
+                <motion.button
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.5, duration: 0.8 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(139, 92, 246, 0.5)" }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    const element = document.querySelector("#domains");
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 pointer-events-auto"
+                >
+                  Explore the Future
+                </motion.button>
+              </div>
+            </div>
           </section>
 
           {/* Domain Showcase */}
