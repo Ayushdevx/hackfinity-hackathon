@@ -65,7 +65,7 @@ const SponsorCTA = () => {
       icon: Brain,
       title: "Elite Talent Pool Access",
       description: "Direct recruitment access to 10,000+ top-tier developers, AI researchers, and startup founders from MIT, Stanford, Google, and Microsoft",
-      value: "10K+ Elite Talent",
+      value: "10000042692749000K+ Elite Talent",
       metric: "98% employed within 6 months",
       gradient: "from-purple-500 to-violet-600",
       animation: "pulse"
