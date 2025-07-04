@@ -230,50 +230,6 @@ const SponsorCTA = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Live Engagement Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed top-4 right-4 z-50 bg-black/80 backdrop-blur-xl rounded-2xl p-4 border border-green-500/30"
-        >
-          <div className="flex items-center space-x-4 text-sm">
-            <div className="flex items-center space-x-2">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-3 h-3 bg-green-500 rounded-full"
-              />
-              <span className="text-green-400 font-semibold">LIVE</span>
-            </div>
-            <div className="flex items-center space-x-1 text-gray-300">
-              <Eye className="w-4 h-4" />
-              <motion.span
-                key={viewCount}
-                initial={{ scale: 1.2, color: "#10b981" }}
-                animate={{ scale: 1, color: "#d1d5db" }}
-                transition={{ duration: 0.3 }}
-              >
-                {viewCount.toLocaleString()}
-              </motion.span>
-            </div>
-            <div className="flex items-center space-x-1 text-gray-300">
-              <ThumbsUp className="w-4 h-4" />
-              <motion.span
-                key={liveFeedback}
-                initial={{ scale: 1.2, color: "#3b82f6" }}
-                animate={{ scale: 1, color: "#d1d5db" }}
-                transition={{ duration: 0.3 }}
-              >
-                {liveFeedback}
-              </motion.span>
-            </div>
-            <div className="flex items-center space-x-1 text-orange-400">
-              <Clock className="w-4 h-4" />
-              <span className="font-semibold">{urgencyCounter}h left</span>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Epic Header with animations */}
         <motion.div
           initial={{ opacity: 0, y: -100 }}
