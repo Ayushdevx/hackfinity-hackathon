@@ -15,11 +15,11 @@ import "@fontsource/inter";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const { setBackgroundMusic } = useAudio();
+  const { setBackgroundMusic, backgroundMusic, isMuted } = useAudio();
 
   useEffect(() => {
     // Initialize background music
-    const music = new Audio("/sounds/background.mp3");
+    const music = new Audio("/sounds/mymusic.mp3");
     music.loop = true;
     music.volume = 0.3;
     setBackgroundMusic(music);
@@ -31,6 +31,21 @@ function App() {
 
     return () => clearTimeout(timer);
   }, [setBackgroundMusic]);
+
+  // Play or pause background music when mute state changes
+  useEffect(() => {
+    if (backgroundMusic) {
+      backgroundMusic.muted = isMuted;
+      if (isMuted) {
+        backgroundMusic.pause();
+      } else {
+        backgroundMusic.play().catch((e) => {
+          // Most browsers require play to be triggered by user gesture
+          console.log("Background music play prevented:", e);
+        });
+      }
+    }
+  }, [backgroundMusic, isMuted]);
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-x-hidden">
