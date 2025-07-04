@@ -68,13 +68,13 @@ const Features = () => {
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 60,
       scale: 0.8
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
       transition: {
@@ -117,7 +117,7 @@ const Features = () => {
             <motion.div
               key={feature.title}
               variants={cardVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 rotateY: 5,
                 z: 50,
@@ -131,9 +131,10 @@ const Features = () => {
                 shadow-2xl hover:shadow-3xl transition-all duration-300
                 border border-white/10 backdrop-blur-sm
                 transform-gpu perspective-1000
+                min-h-[340px] h-[340px] w-full flex flex-col
               `}>
                 {/* Animated background glow */}
-                <motion.div 
+                <motion.div
                   className={`
                     absolute inset-0 rounded-3xl bg-gradient-to-br ${feature.gradient}
                     opacity-20 blur-xl transition-opacity duration-300
@@ -147,7 +148,7 @@ const Features = () => {
                     ease: "easeInOut",
                   }}
                 />
-                
+
                 <div className="relative z-10">
                   {/* Icon and Stats */}
                   <div className="flex items-center justify-between mb-6">
@@ -159,11 +160,11 @@ const Features = () => {
                       <div className="font-title text-white font-bold text-lg">{feature.stats}</div>
                     </div>
                   </div>
-                  
+
                   <h3 className="font-title text-2xl font-bold text-white mb-4">
                     {feature.title}
                   </h3>
-                  
+
                   <p className="font-body text-white/90 leading-relaxed">
                     {feature.description}
                   </p>
@@ -217,7 +218,7 @@ const Features = () => {
               Join thousands of developers in the most exciting Agentic AI Hackathon ever organized
             </p>
             <motion.button
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
               }}

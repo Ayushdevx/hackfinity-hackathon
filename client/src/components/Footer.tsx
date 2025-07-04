@@ -51,7 +51,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -60,7 +60,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2"
           >
-            <motion.h3 
+            <motion.h3
               className="font-title text-4xl font-bold text-white mb-4"
               whileHover={{ scale: 1.05 }}
             >
@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="text-purple-300 font-semibold text-lg mb-8">
               🚀 October 18, 2025 • Infinite Fun. Infinite Creativity
             </div>
-            
+
             {/* Social Links */}
             <div className="flex space-x-6">
               {socialLinks.map((social, index) => (
@@ -87,8 +87,8 @@ const Footer = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ 
-                    scale: 1.2, 
+                  whileHover={{
+                    scale: 1.2,
                     rotate: 360,
                     transition: { duration: 0.3 }
                   }}
@@ -100,7 +100,7 @@ const Footer = () => {
                   `}
                 >
                   <social.icon className="w-6 h-6 text-white group-hover:text-purple-300 transition-colors" />
-                  <motion.div 
+                  <motion.div
                     className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${social.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                   />
                   <ExternalLink className="absolute -top-1 -right-1 w-3 h-3 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -160,14 +160,14 @@ const Footer = () => {
                   <motion.a
                     href={contact.href}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-purple-900/30 to-cyan-900/30 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
+                    className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-purple-900/30 to-cyan-900/30 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 min-w-0"
                   >
                     <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl">
                       <contact.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <div className="text-sm text-purple-300 font-semibold">{contact.label}</div>
-                      <div className="font-body text-white group-hover:text-purple-300 transition-colors">
+                      <div className="font-body text-white group-hover:text-purple-300 transition-colors break-all text-sm sm:text-base max-w-xs md:max-w-sm lg:max-w-md">
                         {contact.value}
                       </div>
                     </div>
@@ -188,7 +188,7 @@ const Footer = () => {
         >
           <motion.div
             className="inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-purple-900/50 to-cyan-900/50 backdrop-blur-xl rounded-full px-8 py-4 border border-purple-500/30"
-            animate={{ 
+            animate={{
               boxShadow: [
                 "0 0 20px rgba(168, 85, 247, 0.3)",
                 "0 0 40px rgba(168, 85, 247, 0.6)",
@@ -215,7 +215,7 @@ const Footer = () => {
             <div className="font-body text-gray-400 text-center md:text-left">
               © 2025 Hackfinity. All rights reserved. Built with 💜 for the future of AI.
             </div>
-            
+
             <div className="flex items-center space-x-6">
               <motion.div
                 animate={{ rotate: 360 }}

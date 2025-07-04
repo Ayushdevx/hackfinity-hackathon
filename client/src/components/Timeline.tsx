@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence, useAnimation } from "framer-motion";
 import { Calendar, Users, FileText, Code, Lightbulb, Trophy, PartyPopper, Clock, CheckCircle, Star, Zap, Crown, Rocket, Heart, Coffee, Brain, Timer, ArrowRight, Sparkles, Target, Award, MessageCircle, Share2, Eye, Play } from "lucide-react";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useInView } from "framer-motion";
 
 const Timeline = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -8,7 +9,7 @@ const Timeline = () => {
     target: containerRef,
     offset: ["start end", "end start"]
   });
-  
+
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [completedEvents, setCompletedEvents] = useState<number[]>([]);
   const [activeEvent, setActiveEvent] = useState<number>(3); // Current main event
@@ -22,15 +23,17 @@ const Timeline = () => {
     minutes: 0,
     seconds: 0
   });
+  const [cardsInView, setCardsInView] = useState(0);
+  const totalCards = 7; // Number of events
 
   // Real-time countdown
   useEffect(() => {
     const targetDate = new Date('2025-10-18T09:00:00Z').getTime();
-    
+
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate - now;
-      
+
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -67,7 +70,7 @@ const Timeline = () => {
       status: "upcoming",
       gradient: "from-green-500 to-emerald-500",
       countdown: "90 days left",
-      perks: ["� AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access", "🌟 Mentor Speed Dating"],
+      perks: ["🧠 AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access", "🌟 Mentor Speed Dating"],
       participants: "5,000+ networking",
       highlight: "🔥 AI matches teams with 95% success rate!"
     },
@@ -155,11 +158,10 @@ const Timeline = () => {
         {[...Array(60)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-2 h-2 rounded-full ${
-              i % 4 === 0 ? 'bg-purple-400' :
-              i % 4 === 1 ? 'bg-cyan-400' :
-              i % 4 === 2 ? 'bg-pink-400' : 'bg-yellow-400'
-            } opacity-60`}
+            className={`absolute w-2 h-2 rounded-full ${i % 4 === 0 ? 'bg-purple-400' :
+                i % 4 === 1 ? 'bg-cyan-400' :
+                  i % 4 === 2 ? 'bg-pink-400' : 'bg-yellow-400'
+              } opacity-60`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -225,7 +227,7 @@ const Timeline = () => {
             </div>
           </motion.div>
 
-          <motion.h2 
+          <motion.h2
             className="font-title text-6xl md:text-8xl font-bold text-white mb-8"
             initial={{ scale: 0.5, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -241,7 +243,7 @@ const Timeline = () => {
             </span>
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             className="font-body text-2xl md:text-3xl text-gray-300 max-w-5xl mx-auto mb-12 leading-relaxed"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,14 +261,14 @@ const Timeline = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="bg-gradient-to-r from-red-900/30 via-orange-900/30 to-yellow-900/30 backdrop-blur-xl rounded-3xl p-8 border border-red-500/30 max-w-5xl mx-auto mb-12 relative overflow-hidden"
           >
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-r from-red-400/10 via-orange-400/10 to-yellow-400/10"
               animate={{ x: ["-100%", "100%"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             />
-            
+
             <div className="relative z-10">
-              <motion.h3 
+              <motion.h3
                 className="text-3xl font-bold text-white mb-6 flex items-center justify-center space-x-3"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -275,7 +277,7 @@ const Timeline = () => {
                 <span>🔥 MAIN EVENT COUNTDOWN</span>
                 <Zap className="w-8 h-8 text-yellow-400" />
               </motion.h3>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   { label: 'Days', value: timeLeft.days, color: 'red' },
@@ -293,22 +295,22 @@ const Timeline = () => {
                     whileHover={{ scale: 1.1 }}
                   >
                     <div className={`bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 rounded-3xl p-6 mb-3 shadow-2xl group-hover:shadow-${item.color}-500/25 transition-all duration-300 relative overflow-hidden`}>
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 bg-white/20"
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                        style={{ 
+                        style={{
                           background: `conic-gradient(from 0deg, transparent, rgba(255,255,255,0.2), transparent)`
                         }}
                       />
-                      <motion.div 
+                      <motion.div
                         className="text-4xl md:text-5xl font-bold text-white relative z-10"
-                        animate={{ 
+                        animate={{
                           scale: item.label === 'Seconds' ? [1, 1.1, 1] : [1, 1.05, 1]
                         }}
-                        transition={{ 
-                          duration: item.label === 'Seconds' ? 1 : 2, 
-                          repeat: Infinity 
+                        transition={{
+                          duration: item.label === 'Seconds' ? 1 : 2,
+                          repeat: Infinity
                         }}
                       >
                         {item.value.toString().padStart(2, '0')}
@@ -320,8 +322,8 @@ const Timeline = () => {
                   </motion.div>
                 ))}
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 className="mt-8 text-center"
                 animate={{ opacity: [1, 0.7, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -335,9 +337,9 @@ const Timeline = () => {
               </motion.div>
             </div>
           </motion.div>
-          
+
           {/* Interactive progress indicator */}
-          <motion.div 
+          <motion.div
             className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -349,19 +351,19 @@ const Timeline = () => {
               <span className="text-cyan-400 font-bold text-lg">75 Days to Glory 🏆</span>
             </div>
             <div className="bg-gray-800/50 rounded-full p-2 backdrop-blur-sm border border-purple-500/30 relative overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="h-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full relative"
                 initial={{ width: 0 }}
                 whileInView={{ width: "45%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 3, ease: "easeOut" }}
               >
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-white/30 rounded-full"
                   animate={{ x: ["-100%", "100%"] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
                 />
-                <motion.div 
+                <motion.div
                   className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -378,278 +380,281 @@ const Timeline = () => {
 
         {/* Enhanced Interactive Timeline */}
         <div className="relative">
-          {/* Animated central timeline */}
-          <motion.div 
+          {/* Animated central timeline synced with cards */}
+          <motion.div
             className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full"
-            style={{ height: "100%" }}
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            style={{ height: "100%", originY: 0 }}
+            animate={{ scaleY: cardsInView / totalCards }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           />
 
           <div className="space-y-16">
-            {events.map((event, index) => (
-              <motion.div
-                key={event.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
-                  type: "spring",
-                  bounce: 0.3
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col`}
-              >
-                {/* Animated Timeline Dot */}
-                <motion.div 
-                  className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
-                  whileHover={{ scale: 1.5 }}
-                  animate={{ 
-                    boxShadow: hoveredIndex === index 
-                      ? "0 0 30px rgba(168, 85, 247, 0.8)" 
-                      : "0 0 15px rgba(168, 85, 247, 0.4)"
+            {events.map((event, index) => {
+              const cardRef = useRef(null);
+              const inView = useInView(cardRef, { once: true, margin: "-20% 0px -20% 0px" });
+              useEffect(() => {
+                if (inView) setCardsInView((prev) => (prev < index + 1 ? index + 1 : prev));
+              }, [inView, index]);
+              return (
+                <motion.div
+                  key={event.title}
+                  ref={cardRef}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    type: "spring",
+                    bounce: 0.3
                   }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    } flex-col`}
                 >
+                  {/* Animated Timeline Dot */}
                   <motion.div
-                    className="absolute inset-1 rounded-full bg-white"
-                    animate={{ 
-                      scale: hoveredIndex === index ? [1, 1.2, 1] : 1 
+                    className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
+                    whileHover={{ scale: 1.5 }}
+                    animate={{
+                      boxShadow: hoveredIndex === index
+                        ? "0 0 30px rgba(168, 85, 247, 0.8)"
+                        : "0 0 15px rgba(168, 85, 247, 0.4)"
                     }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.div>
-
-                {/* Enhanced Event Card */}
-                <div className={`
-                  w-full md:w-5/12 ml-20 md:ml-0 ${
-                    index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
-                  }
-                `}>
-                  <motion.div
-                    whileHover={{ 
-                      scale: 1.03,
-                      rotateY: index % 2 === 0 ? 2 : -2,
-                      z: 50
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
-                    className={`
-                      relative p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
-                      backdrop-blur-xl border border-white/10 shadow-2xl
-                      group overflow-hidden cursor-pointer
-                      ${event.status === 'highlight' ? 'ring-2 ring-yellow-400/50' : ''}
-                      ${expandedEvent === index ? 'ring-2 ring-purple-400/50' : ''}
-                    `}
                   >
-                    {/* Glow effect */}
-                    <motion.div 
-                      className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${event.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
-                      animate={hoveredIndex === index ? { opacity: 0.3 } : { opacity: 0 }}
-                    />
-                    
-                    {/* Content */}
-                    <div className="relative z-10">
-                      {/* Header */}
-                      <div className="flex items-center justify-between mb-6">
-                        <motion.div 
-                          className="flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <event.icon className="w-8 h-8 text-white" />
-                        </motion.div>
-                        <div className="flex flex-col items-end">
-                          <div className={`
-                            px-4 py-2 rounded-full text-sm font-bold mb-2
-                            ${event.status === 'highlight' ? 'bg-yellow-400 text-black' : 
-                              event.status === 'ongoing' ? 'bg-green-400 text-black' : 
-                              'bg-white/20 text-white'
-                            }
-                          `}>
-                            {event.status === 'highlight' ? '🔥 MAIN EVENT' :
-                             event.status === 'ongoing' ? '⚡ LIVE NOW' : '🚀 UPCOMING'}
-                          </div>
-                          <div className="text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full">
-                            {event.countdown}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Title */}
-                      <motion.h3 
-                        className="font-title text-2xl font-bold text-white mb-4"
-                        animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
-                      >
-                        {event.title}
-                      </motion.h3>
-                      
-                      {/* Date & Time */}
-                      <div className="flex items-center space-x-4 mb-4">
-                        <div className="flex items-center space-x-2">
-                          <Calendar className="w-4 h-4 text-purple-400" />
-                          <span className="text-white font-semibold">
-                            {event.date}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Clock className="w-4 h-4 text-cyan-400" />
-                          <span className="text-white/80 text-sm">
-                            {event.time}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      {/* Description */}
-                      <p className="font-body text-white/90 text-base leading-relaxed mb-6">
-                        {event.description}
-                      </p>
-
-                      {/* Perks */}
-                      <div className="space-y-2">
-                        <div className="text-sm font-semibold text-purple-400 mb-3">💎 EXCLUSIVE PERKS:</div>
-                        <div className="grid grid-cols-1 gap-2">
-                          {event.perks.map((perk, perkIndex) => (
-                            <motion.div
-                              key={perkIndex}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ delay: perkIndex * 0.1 }}
-                              className="flex items-center space-x-2 text-white/80 text-sm"
-                            >
-                              <Star className="w-3 h-3 text-yellow-400" />
-                              <span>{perk}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Expandable Content */}
-                    <AnimatePresence>
-                      {expandedEvent === index && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="relative z-10 mt-6 border-t border-white/10 pt-6"
-                        >
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Additional Info */}
-                            <div>
-                              <h4 className="text-lg font-bold text-purple-300 mb-3 flex items-center">
-                                <Target className="w-5 h-5 mr-2" />
-                                Key Details
-                              </h4>
-                              <div className="space-y-2 text-white/80 text-sm">
-                                <div className="flex items-center space-x-2">
-                                  <Eye className="w-4 h-4 text-cyan-400" />
-                                  <span>{event.participants}</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                  <MessageCircle className="w-4 h-4 text-green-400" />
-                                  <span>Live chat & networking</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                  <Share2 className="w-4 h-4 text-blue-400" />
-                                  <span>Social media integration</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div>
-                              <h4 className="text-lg font-bold text-purple-300 mb-3 flex items-center">
-                                <Rocket className="w-5 h-5 mr-2" />
-                                Quick Actions
-                              </h4>
-                              <div className="space-y-3">
-                                <motion.button
-                                  whileHover={{ scale: 1.02 }}
-                                  whileTap={{ scale: 0.98 }}
-                                  className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white py-2 px-4 rounded-xl text-sm font-semibold flex items-center justify-center space-x-2"
-                                >
-                                  <Play className="w-4 h-4" />
-                                  <span>Set Reminder</span>
-                                </motion.button>
-                                <motion.button
-                                  whileHover={{ scale: 1.02 }}
-                                  whileTap={{ scale: 0.98 }}
-                                  className="w-full bg-white/10 backdrop-blur text-white py-2 px-4 rounded-xl text-sm font-semibold border border-white/20 flex items-center justify-center space-x-2"
-                                >
-                                  <Share2 className="w-4 h-4" />
-                                  <span>Share Event</span>
-                                </motion.button>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Highlight Banner */}
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="mt-6 p-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl border border-yellow-400/30"
-                          >
-                            <div className="flex items-center space-x-3">
-                              <Sparkles className="w-6 h-6 text-yellow-400" />
-                              <div>
-                                <div className="text-yellow-300 font-bold text-lg">{event.highlight}</div>
-                                <div className="text-white/70 text-sm">Don't miss this legendary opportunity!</div>
-                              </div>
-                            </div>
-                          </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Click to expand indicator */}
                     <motion.div
-                      className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-sm rounded-full p-2"
-                      animate={{ 
-                        rotate: expandedEvent === index ? 180 : 0,
-                        scale: hoveredIndex === index ? 1.1 : 1
+                      className="absolute inset-1 rounded-full bg-white"
+                      animate={{
+                        scale: hoveredIndex === index ? [1, 1.2, 1] : 1
                       }}
                       transition={{ duration: 0.3 }}
-                    >
-                      <ArrowRight className="w-4 h-4 text-white/60" />
-                    </motion.div>
-
-                    {/* Floating micro-particles */}
-                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
-                          style={{
-                            left: `${20 + Math.random() * 60}%`,
-                            top: `${20 + Math.random() * 60}%`,
-                          }}
-                          animate={{
-                            y: [-10, -30],
-                            opacity: [0, 1, 0],
-                            scale: [0, 1, 0],
-                          }}
-                          transition={{
-                            duration: 2 + Math.random(),
-                            repeat: Infinity,
-                            delay: Math.random() * 2,
-                          }}
-                        />
-                      ))}
-                    </div>
+                    />
                   </motion.div>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Enhanced Event Card */}
+                  <div className={`
+                    w-full md:w-5/12 ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
+                    }
+                  `}>
+                    <motion.div
+                      whileHover={{
+                        scale: 1.03,
+                        rotateY: index % 2 === 0 ? 2 : -2,
+                        z: 50
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
+                      className={`
+                        relative p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
+                        backdrop-blur-xl border border-white/10 shadow-2xl
+                        group overflow-hidden cursor-pointer
+                        ${event.status === 'highlight' ? 'ring-2 ring-yellow-400/50' : ''}
+                        ${expandedEvent === index ? 'ring-2 ring-purple-400/50' : ''}
+                      `}
+                    >
+                      {/* Glow effect */}
+                      <motion.div
+                        className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${event.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
+                        animate={hoveredIndex === index ? { opacity: 0.3 } : { opacity: 0 }}
+                      />
+
+                      {/* Content */}
+                      <div className="relative z-10">
+                        {/* Header */}
+                        <div className="flex items-center justify-between mb-6">
+                          <motion.div
+                            className="flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            <event.icon className="w-8 h-8 text-white" />
+                          </motion.div>
+                          <div className="flex flex-col items-end">
+                            <div className={`
+                              px-4 py-2 rounded-full text-sm font-bold mb-2
+                              ${event.status === 'highlight' ? 'bg-yellow-400 text-black' :
+                                event.status === 'ongoing' ? 'bg-green-400 text-black' :
+                                  'bg-white/20 text-white'
+                              }
+                            `}>
+                              {event.status === 'highlight' ? '🔥 MAIN EVENT' :
+                                event.status === 'ongoing' ? '⚡ LIVE NOW' : '🚀 UPCOMING'}
+                            </div>
+                            <div className="text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full">
+                              {event.countdown}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <motion.h3
+                          className="font-title text-2xl font-bold text-white mb-4"
+                          animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
+                        >
+                          {event.title}
+                        </motion.h3>
+
+                        {/* Date & Time */}
+                        <div className="flex items-center space-x-4 mb-4">
+                          <div className="flex items-center space-x-2">
+                            <Calendar className="w-4 h-4 text-purple-400" />
+                            <span className="text-white font-semibold">
+                              {event.date}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="w-4 h-4 text-cyan-400" />
+                            <span className="text-white/80 text-sm">
+                              {event.time}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        <p className="font-body text-white/90 text-base leading-relaxed mb-6">
+                          {event.description}
+                        </p>
+
+                        {/* Perks */}
+                        <div className="space-y-2">
+                          <div className="text-sm font-semibold text-purple-400 mb-3">💎 EXCLUSIVE PERKS:</div>
+                          <div className="grid grid-cols-1 gap-2">
+                            {event.perks.map((perk, perkIndex) => (
+                              <motion.div
+                                key={perkIndex}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: perkIndex * 0.1 }}
+                                className="flex items-center space-x-2 text-white/80 text-sm"
+                              >
+                                <Star className="w-3 h-3 text-yellow-400" />
+                                <span>{perk}</span>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Expandable Content */}
+                      <AnimatePresence>
+                        {expandedEvent === index && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="relative z-10 mt-6 border-t border-white/10 pt-6"
+                          >
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {/* Additional Info */}
+                              <div>
+                                <h4 className="text-lg font-bold text-purple-300 mb-3 flex items-center">
+                                  <Target className="w-5 h-5 mr-2" />
+                                  Key Details
+                                </h4>
+                                <div className="space-y-2 text-white/80 text-sm">
+                                  <div className="flex items-center space-x-2">
+                                    <Eye className="w-4 h-4 text-cyan-400" />
+                                    <span>{event.participants}</span>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <MessageCircle className="w-4 h-4 text-green-400" />
+                                    <span>Live chat & networking</span>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <Share2 className="w-4 h-4 text-blue-400" />
+                                    <span>Social media integration</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Action Buttons */}
+                              <div>
+                                <h4 className="text-lg font-bold text-purple-300 mb-3 flex items-center">
+                                  <Rocket className="w-5 h-5 mr-2" />
+                                  Quick Actions
+                                </h4>
+                                <div className="space-y-3">
+                                  <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white py-2 px-4 rounded-xl text-sm font-semibold flex items-center justify-center space-x-2"
+                                  >
+                                    <Play className="w-4 h-4" />
+                                    <span>Set Reminder</span>
+                                  </motion.button>
+                                  <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full bg-white/10 backdrop-blur text-white py-2 px-4 rounded-xl text-sm font-semibold border border-white/20 flex items-center justify-center space-x-2"
+                                  >
+                                    <Share2 className="w-4 h-4" />
+                                    <span>Share Event</span>
+                                  </motion.button>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Highlight Banner */}
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.2 }}
+                              className="mt-6 p-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl border border-yellow-400/30"
+                            >
+                              <div className="flex items-center space-x-3">
+                                <Sparkles className="w-6 h-6 text-yellow-400" />
+                                <div>
+                                  <div className="text-yellow-300 font-bold text-lg">{event.highlight}</div>
+                                  <div className="text-white/70 text-sm">Don't miss this legendary opportunity!</div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Click to expand indicator */}
+                      <motion.div
+                        className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-sm rounded-full p-2"
+                        animate={{
+                          rotate: expandedEvent === index ? 180 : 0,
+                          scale: hoveredIndex === index ? 1.1 : 1
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowRight className="w-4 h-4 text-white/60" />
+                      </motion.div>
+
+                      {/* Floating micro-particles */}
+                      <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                        {[...Array(5)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
+                            style={{
+                              left: `${20 + Math.random() * 60}%`,
+                              top: `${20 + Math.random() * 60}%`,
+                            }}
+                            animate={{
+                              y: [-10, -30],
+                              opacity: [0, 1, 0],
+                              scale: [0, 1, 0],
+                            }}
+                            transition={{
+                              duration: 2 + Math.random(),
+                              repeat: Infinity,
+                              delay: Math.random() * 2,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -662,7 +667,7 @@ const Timeline = () => {
           className="text-center mt-20"
         >
           <motion.button
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               boxShadow: "0 20px 40px rgba(168, 85, 247, 0.3)"
             }}

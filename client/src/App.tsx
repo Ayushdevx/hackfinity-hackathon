@@ -64,9 +64,9 @@ function App() {
       {!loading && (
         <>
           <Navigation />
-          
+
           {/* Hero Section with 3D Canvas */}
-          <section id="hero" className="relative h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-purple-900">
+          <section id="hero" className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-purple-900 pb-32">
             {/* 3D Background Canvas */}
             <div className="absolute inset-0 z-0 opacity-70">
               <Canvas
@@ -88,9 +88,9 @@ function App() {
                 </Suspense>
               </Canvas>
             </div>
-            
+
             {/* Main Overlay UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-20">
+            <div className="relative flex items-center justify-center z-30 pointer-events-none pt-20">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -103,7 +103,7 @@ function App() {
                   </h1>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 opacity-20 blur-xl rounded-full"></div>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -165,8 +165,8 @@ function App() {
                   className="flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto"
                 >
                   <motion.button
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       boxShadow: "0 0 40px rgba(139, 92, 246, 0.6)",
                       y: -5
                     }}
@@ -184,7 +184,7 @@ function App() {
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </motion.button>
-                  
+
                   <motion.button
                     whileHover={{ scale: 1.05, y: -5 }}
                     whileTap={{ scale: 0.95 }}

@@ -14,7 +14,7 @@ const SponsorHighlight = () => {
     {
       name: "ETHIndia",
       logo: "https://ethindia.co/assets/images/ethindia-logo.png",
-      tier: "Platinum", 
+      tier: "Platinum",
       description: "India's largest Ethereum hackathon and developer community",
       website: "https://ethindia.co",
       gradient: "from-purple-600 to-pink-600"
@@ -51,7 +51,7 @@ const SponsorHighlight = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.03,
                 rotateY: 5,
                 transition: { duration: 0.3 }
@@ -63,13 +63,14 @@ const SponsorHighlight = () => {
                 shadow-2xl hover:shadow-3xl transition-all duration-300
                 border border-white/10 backdrop-blur-sm
                 transform-gpu
+                min-h-[400px] h-[400px] w-full flex flex-col
               `}>
                 {/* Glow effect */}
                 <div className={`
                   absolute inset-0 rounded-3xl bg-gradient-to-br ${sponsor.gradient}
                   opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300
                 `} />
-                
+
                 <div className="relative z-10">
                   {/* Tier Badge */}
                   <div className="flex items-center justify-between mb-6">
@@ -94,7 +95,7 @@ const SponsorHighlight = () => {
                   <h3 className="text-2xl font-bold text-white mb-3">
                     {sponsor.name}
                   </h3>
-                  
+
                   <p className="text-white/90 mb-6">
                     {sponsor.description}
                   </p>
