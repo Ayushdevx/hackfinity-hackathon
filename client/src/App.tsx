@@ -90,7 +90,7 @@ function App() {
             </div>
             
             {/* Main Overlay UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-20">
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-20 xs:pt-24 sm:pt-16 md:pt-20">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -98,7 +98,7 @@ function App() {
                   transition={{ delay: 0.5, duration: 1.2, type: "spring" }}
                   className="relative"
                 >
-                  <h1 className="font-title text-7xl md:text-9xl font-black text-white mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+                  <h1 className="font-title text-2xl xs:text-3xl sm:text-7xl md:text-9xl font-black text-white mb-4 xs:mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient hero-title-mobile px-4">
                     HACKFINITY
                   </h1>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 opacity-20 blur-xl rounded-full"></div>
@@ -110,10 +110,10 @@ function App() {
                   transition={{ delay: 0.7, duration: 0.8 }}
                   className="mb-6"
                 >
-                  <p className="font-title text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text mb-2">
+                  <p className="font-title text-lg xs:text-xl sm:text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text mb-2 hero-subtitle-mobile">
                     Infinite Fun. Infinite Creativity.
                   </p>
-                  <div className="font-body flex items-center justify-center space-x-2 text-xl text-cyan-400">
+                  <div className="font-body flex items-center justify-center space-x-1 xs:space-x-2 text-sm xs:text-base sm:text-xl text-cyan-400 hero-description-mobile">
                     <span>⚡</span>
                     <span>From Caffeine to Code – Experience the Best</span>
                     <span>⚡</span>
@@ -127,7 +127,7 @@ function App() {
                   className="mb-6"
                 >
                   <div className="bg-gradient-to-r from-purple-600/20 to-cyan-600/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 mb-4">
-                    <p className="font-title text-4xl md:text-5xl font-bold text-white mb-2">
+                    <p className="font-title text-xl xs:text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 hero-date-mobile">
                       October 18, 2025
                     </p>
                     <div className="font-body flex items-center justify-center space-x-4 text-lg">
@@ -146,7 +146,7 @@ function App() {
                   <p className="font-title text-2xl md:text-3xl font-bold text-white mb-2">
                     🌍 The World's Biggest Agentic AI Hackathon
                   </p>
-                  <div className="font-body flex flex-wrap justify-center gap-4 text-sm">
+                  <div className="font-body flex flex-wrap justify-center gap-2 xs:gap-3 sm:gap-4 text-xs hero-stats-mobile">
                     <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full border border-purple-500/30">
                       🚀 ₹100K+ Prize Pool
                     </span>
@@ -162,7 +162,7 @@ function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.3, duration: 0.8 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto"
+                  className="flex flex-col gap-3 xs:gap-4 sm:flex-row sm:gap-4 justify-center pointer-events-auto px-4 sm:px-0 max-w-sm xs:max-w-md sm:max-w-none mx-auto"
                 >
                   <motion.button
                     whileHover={{ 
@@ -175,7 +175,7 @@ function App() {
                       const element = document.querySelector("#domains");
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl transition-all duration-300 group"
+                    className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-4 xs:px-6 sm:px-10 py-3 xs:py-4 sm:py-5 rounded-full font-bold text-sm xs:text-base sm:text-xl shadow-2xl transition-all duration-300 group button-mobile"
                   >
                     <span className="relative z-10 flex items-center space-x-2">
                       <span>🚀</span>
@@ -192,7 +192,7 @@ function App() {
                       const element = document.querySelector("#sponsor-cta");
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm"
+                    className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-4 xs:px-5 sm:px-6 md:px-8 py-3 xs:py-3 sm:py-4 rounded-full font-semibold text-sm xs:text-sm sm:text-base md:text-lg transition-all duration-300 backdrop-blur-sm button-mobile w-full sm:w-auto"
                   >
                     💼 Become a Sponsor
                   </motion.button>
