@@ -194,7 +194,7 @@ const DomainShowcase = () => {
           className="text-center mb-20"
         >
           <motion.h2 
-            className="font-title text-6xl md:text-7xl font-bold text-white mb-8"
+            className="font-title text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-6 sm:mb-8 px-4"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -205,7 +205,7 @@ const DomainShowcase = () => {
             </span>
           </motion.h2>
           <motion.p 
-            className="font-body text-2xl text-gray-300 max-w-4xl mx-auto mb-12"
+            className="font-body text-lg sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 sm:mb-12 px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -220,7 +220,7 @@ const DomainShowcase = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative bg-gradient-to-r from-purple-900/60 via-pink-900/60 to-cyan-900/60 backdrop-blur-xl rounded-3xl p-10 border border-purple-500/30 max-w-5xl mx-auto shadow-2xl overflow-hidden"
+            className="relative bg-gradient-to-r from-purple-900/60 via-pink-900/60 to-cyan-900/60 backdrop-blur-xl rounded-3xl p-4 sm:p-10 border border-purple-500/30 max-w-5xl mx-auto shadow-2xl overflow-hidden mx-4"
           >
             {/* Animated background overlay */}
             <motion.div 
@@ -277,7 +277,7 @@ const DomainShowcase = () => {
                 </motion.h3>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
                 {[
                   { label: 'Days', value: timeLeft.days, color: 'purple', emoji: '📅' },
                   { label: 'Hours', value: timeLeft.hours, color: 'pink', emoji: '⏰' },
@@ -324,7 +324,7 @@ const DomainShowcase = () => {
                           {item.emoji}
                         </motion.div>
                         <motion.div 
-                          className="text-4xl md:text-5xl font-bold text-white"
+                          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
                           animate={{ 
                             scale: item.label === 'Seconds' ? [1, 1.15, 1] : [1, 1.05, 1],
                             color: item.label === 'Seconds' ? ['#ffffff', '#fbbf24', '#ffffff'] : '#ffffff'
@@ -355,17 +355,17 @@ const DomainShowcase = () => {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <motion.div 
-                  className="text-2xl font-bold text-white mb-3"
+                  className="text-xl sm:text-2xl font-bold text-white mb-3"
                   animate={{ scale: [1, 1.03, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   🌟 October 18, 2025 • 9:00 AM UTC 🌟
                 </motion.div>
-                <div className="text-cyan-400 text-xl font-semibold mb-2">
+                <div className="text-cyan-400 text-base sm:text-xl font-semibold mb-2">
                   The Moment That Will Define AI's Future
                 </div>
                 <motion.div 
-                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 rounded-full text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   animate={{ 
@@ -396,7 +396,7 @@ const DomainShowcase = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 px-4"
         >
           {domains.map((domain, index) => (
             <motion.div
@@ -409,7 +409,7 @@ const DomainShowcase = () => {
               className="group relative"
             >
               <div className={`
-                relative p-8 rounded-3xl bg-gradient-to-br ${domain.gradient}/10
+                relative p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${domain.gradient}/10
                 backdrop-blur-xl border border-white/10 shadow-2xl
                 group-hover:border-white/20 transition-all duration-500 overflow-hidden h-80
               `}>
@@ -444,7 +444,7 @@ const DomainShowcase = () => {
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h3 className="font-title text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <h3 className="font-title text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-purple-300 transition-colors">
                     {domain.title}
                   </h3>
                   <p className="font-body text-gray-300 text-sm leading-relaxed">
@@ -482,7 +482,7 @@ const DomainShowcase = () => {
               boxShadow: "0 20px 40px rgba(168, 85, 247, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-12 py-4 rounded-full font-bold text-xl shadow-lg transition-all duration-300"
+            className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full font-bold text-base sm:text-xl shadow-lg transition-all duration-300"
           >
             🚀 Register Now
           </motion.button>

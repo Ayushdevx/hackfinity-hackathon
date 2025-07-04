@@ -95,12 +95,12 @@ const Features = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-title text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="font-title text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 px-4">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Why Choose Hackfinity?
             </span>
           </h2>
-          <p className="font-body text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="font-body text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
             Experience the ultimate hackathon with unmatched opportunities and resources
           </p>
         </motion.div>
@@ -111,7 +111,7 @@ const Features = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 px-4"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -127,7 +127,7 @@ const Features = () => {
               className="group relative"
             >
               <div className={`
-                relative p-8 rounded-3xl bg-gradient-to-br ${feature.gradient}
+                relative p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${feature.gradient}
                 shadow-2xl hover:shadow-3xl transition-all duration-300
                 border border-white/10 backdrop-blur-sm
                 transform-gpu perspective-1000
@@ -160,11 +160,11 @@ const Features = () => {
                     </div>
                   </div>
                   
-                  <h3 className="font-title text-2xl font-bold text-white mb-4">
+                  <h3 className="font-title text-xl sm:text-2xl font-bold text-white mb-4">
                     {feature.title}
                   </h3>
                   
-                  <p className="font-body text-white/90 leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-white/90 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -209,11 +209,11 @@ const Features = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-3xl p-8 border border-purple-500/20 backdrop-blur-sm">
-            <h3 className="font-title text-3xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-3xl p-6 sm:p-8 border border-purple-500/20 backdrop-blur-sm mx-4">
+            <h3 className="font-title text-2xl sm:text-3xl font-bold text-white mb-4">
               Ready to Experience the Ultimate Hackathon?
             </h3>
-            <p className="font-body text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="font-body text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto">
               Join thousands of developers in the most exciting Agentic AI Hackathon ever organized
             </p>
             <motion.button
@@ -222,7 +222,7 @@ const Features = () => {
                 boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
             >
               Register Now - It's Free!
             </motion.button>
