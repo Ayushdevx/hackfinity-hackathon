@@ -67,7 +67,7 @@ const Timeline = () => {
       status: "upcoming",
       gradient: "from-green-500 to-emerald-500",
       countdown: "90 days left",
-      perks: ["� AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access", "🌟 Mentor Speed Dating"],
+      perks: ["🧠 AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access", "🌟 Mentor Speed Dating"],
       participants: "5,000+ networking",
       highlight: "🔥 AI matches teams with 95% success rate!"
     },
@@ -380,7 +380,7 @@ const Timeline = () => {
         <div className="relative">
           {/* Animated central timeline */}
           <motion.div 
-            className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full"
+            className="absolute left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full z-0"
             style={{ height: "100%" }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -409,7 +409,7 @@ const Timeline = () => {
               >
                 {/* Animated Timeline Dot */}
                 <motion.div 
-                  className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
+                  className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
                   whileHover={{ scale: 1.5 }}
                   animate={{ 
                     boxShadow: hoveredIndex === index 
@@ -428,7 +428,7 @@ const Timeline = () => {
 
                 {/* Enhanced Event Card */}
                 <div className={`
-                  w-full md:w-5/12 ml-20 md:ml-0 ${
+                  w-full md:w-5/12 ml-0 md:ml-0 ${
                     index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
                   }
                 `}>
@@ -442,11 +442,12 @@ const Timeline = () => {
                     transition={{ duration: 0.3 }}
                     onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
                     className={`
-                      relative p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
+                      relative p-2 md:p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
                       backdrop-blur-xl border border-white/10 shadow-2xl
                       group overflow-hidden cursor-pointer
                       ${event.status === 'highlight' ? 'ring-2 ring-yellow-400/50' : ''}
                       ${expandedEvent === index ? 'ring-2 ring-purple-400/50' : ''}
+                      z-10 md:z-auto
                     `}
                   >
                     {/* Glow effect */}
@@ -460,11 +461,11 @@ const Timeline = () => {
                       {/* Header */}
                       <div className="flex items-center justify-between mb-6">
                         <motion.div 
-                          className="flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
+                          className="flex items-center justify-center w-8 h-8 md:w-16 md:h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
                           whileHover={{ rotate: 360 }}
                           transition={{ duration: 0.6 }}
                         >
-                          <event.icon className="w-8 h-8 text-white" />
+                          <event.icon className="w-5 h-5 md:w-8 md:h-8 text-white" />
                         </motion.div>
                         <div className="flex flex-col items-end">
                           <div className={`
@@ -485,7 +486,7 @@ const Timeline = () => {
 
                       {/* Title */}
                       <motion.h3 
-                        className="font-title text-2xl font-bold text-white mb-4"
+                        className="font-title text-base md:text-2xl font-bold text-white mb-4"
                         animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
                       >
                         {event.title}

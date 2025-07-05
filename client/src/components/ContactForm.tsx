@@ -237,15 +237,15 @@ const ContactForm = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
-                    className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-200"
+                    className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-200 min-w-0 w-full"
                   >
                     <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex-shrink-0">
                       <item.icon className="w-6 h-6 text-white" />
                     </div>
-                    <div>
+                    <div className="min-w-0 w-full">
                       <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                      <p className="text-purple-300">{item.info}</p>
-                      <p className="text-gray-400 text-sm">{item.subinfo}</p>
+                      <p className="text-purple-300 break-all whitespace-normal text-sm sm:text-base max-w-full">{item.info}</p>
+                      <p className="text-gray-400 text-sm break-all whitespace-normal max-w-full">{item.subinfo}</p>
                     </div>
                   </motion.div>
                 ))}

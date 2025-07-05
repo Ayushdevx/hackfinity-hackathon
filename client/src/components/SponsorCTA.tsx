@@ -347,17 +347,9 @@ const SponsorCTA = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 1 + index * 0.1, type: "spring", bounce: 0.6 }}
                 >
-                  {typeof stat.value === 'number' && stat.value > 100 ? 
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 2, delay: 1 + index * 0.1 }}
-                    >
-                      {stat.value.toLocaleString()}{stat.suffix}
-                    </motion.span>
-                    : 
-                    stat.value + stat.suffix
-                  }
+                  <div className="text-2xl font-bold text-white mb-2">
+                    {stat.label === "Prize Pool" ? <span className="text-green-400">{stat.value}</span> : stat.value + stat.suffix}
+                  </div>
                 </motion.div>
                 <div className="text-gray-300 font-semibold text-sm">{stat.label}</div>
               </motion.div>
@@ -1021,7 +1013,7 @@ const SponsorCTA = () => {
                   boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl transition-all duration-300 overflow-hidden"
+                className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-4 sm:px-10 py-2 sm:py-5 rounded-full font-bold text-base sm:text-xl shadow-2xl transition-all duration-300 overflow-hidden"
               >
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -1037,7 +1029,7 @@ const SponsorCTA = () => {
               <motion.button
                 whileHover={{ scale: 1.05, borderColor: "#fbbf24" }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-10 py-5 rounded-full font-bold text-xl transition-all duration-300 backdrop-blur-sm group"
+                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-4 sm:px-10 py-2 sm:py-5 rounded-full font-bold text-base sm:text-xl transition-all duration-300 backdrop-blur-sm group"
               >
                 <span className="flex items-center space-x-3">
                   <span>Download Sponsorship Kit</span>

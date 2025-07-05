@@ -115,7 +115,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-xs pl-10 pr-7"
+            className="max-w-xs md:pl-10 md:pr-7"
           >
             <h4 className="font-title text-xl font-bold text-white mb-6">Quick Links</h4>
             <ul className="space-y-4">
@@ -146,10 +146,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="pl-10 items-start justify-self-start"
+            className="md:pl-10 items-start justify-self-start"
           >
-            <h4 className="font-title text-xl font-bold text-white mb-6 pl-10">Get in Touch</h4>
-            <div className="space-y-6 pl-10">
+            <h4 className="font-title text-xl font-bold text-white mb-6 md:pl-10">Get in Touch</h4>
+            <div className="space-y-6 md:pl-10">
               {contactInfo.map((contact, index) => (
                 <motion.div
                   key={contact.label}
@@ -169,9 +169,17 @@ const Footer = () => {
                     </div>
                     <div>
                       <div className="text-sm text-purple-300 font-semibold">{contact.label}</div>
-                      <div className="font-body text-white group-hover:text-purple-300 transition-colors truncate">
-                        {contact.value}
-                      </div>
+                      {/* Show email in two lines on mobile, single line on md+ */}
+                      {contact.label === 'Email' && typeof contact.value === 'string' && contact.value.includes('@') ? (
+                        <>
+                          <span className="block md:hidden">
+                            {contact.value.split('@')[0]}<br />@{contact.value.split('@')[1]}
+                          </span>
+                          <span className="hidden md:inline">{contact.value}</span>
+                        </>
+                      ) : (
+                        contact.value
+                      )}
                     </div>
                   </motion.a>
                 </motion.div>

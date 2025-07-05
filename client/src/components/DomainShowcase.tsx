@@ -259,12 +259,13 @@ const DomainShowcase = () => {
             </div>
             
             <div className="relative z-10">
-              <div className="flex items-center justify-center mb-8">
+              <div className="text-center mb-8">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="mb-4"
                 >
-                  <Calendar className="w-10 h-10 text-purple-400 mr-4" />
+                  <Calendar className="w-10 h-10 text-purple-400 mx-auto" />
                 </motion.div>
                 <motion.h3 
                   className="font-title text-3xl md:text-4xl font-bold text-white"

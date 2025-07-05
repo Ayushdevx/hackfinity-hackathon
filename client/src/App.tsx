@@ -90,7 +90,7 @@ function App() {
             </div>
             
             {/* Main Overlay UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-20">
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none pt-32 sm:pt-24">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -98,7 +98,8 @@ function App() {
                   transition={{ delay: 0.5, duration: 1.2, type: "spring" }}
                   className="relative"
                 >
-                  <h1 className="font-title text-7xl md:text-9xl font-black text-white mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+                  
+                  <h1 className="pt-0 font-title text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-black text-white mb-4 md:mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient">
                     HACKFINITY
                   </h1>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 opacity-20 blur-xl rounded-full"></div>
@@ -110,10 +111,10 @@ function App() {
                   transition={{ delay: 0.7, duration: 0.8 }}
                   className="mb-6"
                 >
-                  <p className="font-title text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text mb-2">
+                  <p className="font-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text mb-2">
                     Infinite Fun. Infinite Creativity.
                   </p>
-                  <div className="font-body flex items-center justify-center space-x-2 text-xl text-cyan-400">
+                  <div className="font-body flex items-center justify-center space-x-1 sm:space-x-2 text-sm sm:text-base md:text-xl text-cyan-400 px-4">
                     <span>⚡</span>
                     <span>From Caffeine to Code – Experience the Best</span>
                     <span>⚡</span>
@@ -127,10 +128,10 @@ function App() {
                   className="mb-6"
                 >
                   <div className="bg-gradient-to-r from-purple-600/20 to-cyan-600/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 mb-4">
-                    <p className="font-title text-4xl md:text-5xl font-bold text-white mb-2">
+                    <p className="font-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
                       October 18, 2025
                     </p>
-                    <div className="font-body flex items-center justify-center space-x-4 text-lg">
+                    <div className="font-body flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm sm:text-base md:text-lg">
                       <span className="bg-red-500 text-white px-3 py-1 rounded-full animate-pulse">🔴 LIVE</span>
                       <span className="text-gray-300">24 Hours of Pure Innovation</span>
                     </div>
@@ -143,10 +144,10 @@ function App() {
                   transition={{ delay: 1.1, duration: 0.8 }}
                   className="mb-8"
                 >
-                  <p className="font-title text-2xl md:text-3xl font-bold text-white mb-2">
+                  <p className="font-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 px-4">
                     🌍 The World's Biggest Agentic AI Hackathon
                   </p>
-                  <div className="font-body flex flex-wrap justify-center gap-4 text-sm">
+                  <div className="font-body flex flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm px-4">
                     <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full border border-purple-500/30">
                       🚀 ₹100K+ Prize Pool
                     </span>
@@ -162,7 +163,7 @@ function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.3, duration: 0.8 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto"
+                  className="flex flex-row gap-2 sm:gap-4 justify-center pointer-events-auto pb-16 sm:pb-0 overflow-hidden"
                 >
                   <motion.button
                     whileHover={{ 
@@ -175,9 +176,9 @@ function App() {
                       const element = document.querySelector("#domains");
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl transition-all duration-300 group"
+                    className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-3 sm:px-8 md:px-10 py-2 sm:py-4 md:py-5 rounded-full font-bold text-sm sm:text-lg md:text-xl shadow-2xl transition-all duration-300 group w-1/2 max-w-[50vw] sm:w-auto text-center truncate"
                   >
-                    <span className="relative z-10 flex items-center space-x-2">
+                    <span className="relative z-10 flex items-center justify-center space-x-1 sm:space-x-2">
                       <span>🚀</span>
                       <span>Join the Revolution</span>
                       <span>🚀</span>
@@ -192,7 +193,7 @@ function App() {
                       const element = document.querySelector("#sponsor-cta");
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm"
+                    className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-3 sm:px-8 py-2 sm:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 backdrop-blur-sm w-1/2 max-w-[50vw] sm:w-auto text-center truncate"
                   >
                     💼 Become a Sponsor
                   </motion.button>
