@@ -610,6 +610,27 @@ const Timeline = () => {
                                     <span>Set Reminder</span>
                                   </motion.button>
                                   <motion.button
+                                    onClick={async (e) => { // Made onClick an async function
+                                      e.stopPropagation(); // Prevent the card from collapsing if it's expanded
+                                      const shareData = {
+                                        title: event.title,
+                                        text: `${event.description}\n\nCheck out this epic event:`,
+                                        url: "https://hackfinityx.devpost.com", // Your Devpost link
+                                      };
+
+                                      if (navigator.share && navigator.canShare(shareData)) {
+                                        try {
+                                          await navigator.share(shareData);
+                                          console.log("Event shared successfully!");
+                                        } catch (error) {
+                                          console.error("Error sharing event:", error);
+                                        }
+                                      } else {
+                                        // Fallback for browsers that don't support Web Share API
+                                        window.open("https://hackfinityx.devpost.com", "_blank");
+                                        alert("Please copy the Devpost link: https://hackfinityx.devpost.com"); // Optional: Inform user
+                                      }
+                                    }}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full bg-white/10 backdrop-blur text-white py-2 px-4 rounded-xl text-sm font-semibold border border-white/20 flex items-center justify-center space-x-2"

@@ -577,7 +577,7 @@ const SponsorCTA = () => {
                     ${tier.tier === 'legendary' ? 'bg-gradient-to-br from-yellow-900/80 via-orange-900/80 to-red-900/80' :
                     tier.tier === 'innovation' ? 'bg-gradient-to-br from-purple-900/80 via-pink-900/80 to-rose-900/80' :
                       'bg-gradient-to-br from-blue-900/80 via-cyan-900/80 to-teal-900/80'}
-                  pt-20
+                    pt-20
                   `}>
                   {tier.highlighted && (
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-1 w-full max-w-[180px] mb-4 pt-4">
@@ -946,12 +946,12 @@ const SponsorCTA = () => {
                 transition={{ delay: 0.6 + index * 0.1, type: "spring", bounce: 0.4 }}
                 whileHover={{ scale: 1.05, rotateY: 10 }}
                 className={`
-                        relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300
-                        ${metric.urgency
+                          relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300
+                          ${metric.urgency
                     ? 'bg-red-500/10 border-red-500/30 hover:border-red-400/50'
                     : `bg-${metric.color}-500/10 border-${metric.color}-500/30 hover:border-${metric.color}-400/50`
                   }
-                    `}
+                        `}
               >
                 {metric.urgency && (
                   <motion.div
@@ -995,6 +995,10 @@ const SponsorCTA = () => {
                 boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                // Replace with your actual Google Form link
+                window.open("https://forms.gle/xcRUjg4HSzWoCpwW9", "_blank");
+              }}
               className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-base md:text-xl shadow-2xl transition-all duration-300 overflow-hidden"
             >
               <motion.div
@@ -1009,21 +1013,24 @@ const SponsorCTA = () => {
               </span>
             </motion.button>
 
-            <motion.button
+            {/* MODIFIED BUTTON FOR PDF DOWNLOAD */}
+            <motion.a
+              href="/sponsor/FINAL Hackfinity Sponsorship Brochure 2025 (1).pdf" // **<<<<<<< REPLACE THIS WITH THE ACTUAL PATH TO YOUR PDF FILE**
+              download="Hackfinity_Sponsorship_Kit.pdf" // **<<<<<<< OPTIONAL: Suggested filename for download**
               whileHover={{ scale: 1.05, borderColor: "#fbbf24" }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-base md:text-xl transition-all duration-300 backdrop-blur-sm group"
+              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-base md:text-xl transition-all duration-300 backdrop-blur-sm group inline-flex items-center justify-center space-x-3" // Added inline-flex and justify-center
             >
-              <span className="flex items-center justify-center w-full space-x-3">
-                <span>Download Sponsorship Kit</span>
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Star className="w-4 h-4 md:w-6 md:h-6" />
-                </motion.div>
-              </span>
-            </motion.button>
+              <span>Download Sponsorship Kit</span>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Star className="w-4 h-4 md:w-6 md:h-6" />
+              </motion.div>
+            </motion.a>
+            {/* END MODIFIED BUTTON */}
+
           </motion.div>
 
           {/* Contact info with animation */}
