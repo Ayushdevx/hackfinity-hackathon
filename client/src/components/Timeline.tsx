@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform, AnimatePresence, useAnimation } from "
 import { Calendar, Users, FileText, Code, Lightbulb, Trophy, PartyPopper, Clock, CheckCircle, Star, Zap, Crown, Rocket, Heart, Coffee, Brain, Timer, ArrowRight, Sparkles, Target, Award, MessageCircle, Share2, Eye, Play } from "lucide-react";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useInView } from "framer-motion";
+import { createGoogleCalendarLink } from "../../../server/utils/googleCalendar";
+import { parseEventDateTime } from "../../../server/utils/parseEventDateTime";
 
 const Timeline = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -167,8 +169,8 @@ const Timeline = () => {
           <motion.div
             key={i}
             className={`absolute w-2 h-2 rounded-full ${i % 4 === 0 ? 'bg-purple-400' :
-                i % 4 === 1 ? 'bg-cyan-400' :
-                  i % 4 === 2 ? 'bg-pink-400' : 'bg-yellow-400'
+              i % 4 === 1 ? 'bg-cyan-400' :
+                i % 4 === 2 ? 'bg-pink-400' : 'bg-yellow-400'
               } opacity-60`}
             style={{
               left: `${Math.random() * 100}%`,
@@ -356,7 +358,12 @@ const Timeline = () => {
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-purple-400 font-bold text-lg">Journey Progress</span>
-              <span className="text-cyan-400 font-bold text-lg">75 Days to Glory 🏆</span>
+              <span className="text-cyan-400 font-bold text-lg">
+                {timeLeft.days > 0
+                  ? `${timeLeft.days} Days to Glory 🏆`
+                  : "🚀 The Hack Has Begun!"}
+              </span>
+
             </div>
             <div className="bg-gray-800/50 rounded-full p-2 backdrop-blur-sm border border-purple-500/30 relative overflow-hidden">
               <motion.div
@@ -579,6 +586,22 @@ const Timeline = () => {
                                 </h4>
                                 <div className="space-y-3">
                                   <motion.button
+                                    onClick={() => {
+                                      const start = parseEventDateTime(event.date, event.time);
+                                      const end = start ? new Date(new Date(start).getTime() + 60 * 60 * 1000).toISOString() : null;
+
+                                      if (start && end) {
+                                        const link = createGoogleCalendarLink({
+                                          title: event.title,
+                                          description: event.description + '\n\n' + event.perks.join(', '),
+                                          startDateTime: start,
+                                          endDateTime: end
+                                        });
+                                        window.open(link, "_blank");
+                                      } else {
+                                        alert("Sorry, this event does not have a valid start time.");
+                                      }
+                                    }}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white py-2 px-4 rounded-xl text-sm font-semibold flex items-center justify-center space-x-2"
@@ -669,15 +692,22 @@ const Timeline = () => {
           className="text-center mt-20"
         >
           <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(168, 85, 247, 0.3)"
+            onClick={() => {
+              const link = createGoogleCalendarLink({
+                title: "🔥 MAIN EVENT: 24H Hack",
+                description: "Don't miss this legendary hackathon!",
+                startDateTime: "2025-10-18T09:00:00Z",
+                endDateTime: "2025-10-18T18:00:00Z"
+              });
+              window.open(link, "_blank");
             }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-12 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
           >
             🗓️ Add to Calendar
           </motion.button>
+
         </motion.div>
       </div>
     </section>

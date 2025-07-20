@@ -16,22 +16,31 @@ const ContactForm = () => {
   const { playSuccess } = useAudio();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    const res = await fetch("http://localhost:5000/api/sponsor", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    if (!res.ok) throw new Error("Failed");
+
     setSubmitStatus("success");
-    setIsSubmitting(false);
     playSuccess();
-    
-    // Reset form after success
     setTimeout(() => {
       setFormData({ name: "", email: "", company: "", message: "", type: "sponsor" });
       setSubmitStatus("idle");
     }, 3000);
-  };
+  } catch (err) {
+    setSubmitStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({

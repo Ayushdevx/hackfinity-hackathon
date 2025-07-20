@@ -224,7 +224,7 @@ const Footer = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <motion.div
+          <motion.button
             className="inline-flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-3 bg-gradient-to-r from-purple-900/50 to-cyan-900/50 backdrop-blur-xl rounded-full px-4 sm:px-8 py-3 sm:py-4 border border-purple-500/30"
             animate={{
               boxShadow: [
@@ -234,11 +234,14 @@ const Footer = () => {
               ]
             }}
             transition={{ duration: 3, repeat: Infinity }}
+            onClick={(e) => {
+              window.open("https://hackfinityx.devpost.com", "_blank");
+            }}
           >
             <span className="font-body text-base sm:text-xl text-purple-300 font-semibold">
               🔗 Join the movement ↓
             </span>
-          </motion.div>
+          </motion.button>
         </motion.div>
 
         {/* Bottom Bar */}

@@ -223,7 +223,7 @@ function App() {
                     whileHover={{ scale: 1.05, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => {
-                      const element = document.querySelector("#sponsor-cta");
+                      const element = document.querySelector(".pricings");
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
                     className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 py-4 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"

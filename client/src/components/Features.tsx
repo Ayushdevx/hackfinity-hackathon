@@ -235,6 +235,9 @@ const Features = () => {
                 boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                window.open("https://hackfinityx.devpost.com", "_blank");
+              }}
               className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
             >
               Register Now - It's Free!

@@ -535,7 +535,7 @@ const SponsorCTA = () => {
             Each tier designed to maximize your impact and ROI in the AI innovation ecosystem
           </motion.p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="pricings grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {sponsorshipTiers.map((tier, index) => (
               <motion.div
                 key={tier.name}
@@ -769,6 +769,9 @@ const SponsorCTA = () => {
                         setShowConfetti(true);
                         setTimeout(() => setShowConfetti(false), 3000);
                       }
+
+                      // Replace with your actual Google Form link
+                      window.open("https://forms.gle/xcRUjg4HSzWoCpwW9", "_blank");
                     }}
                     className={`
                         w-full py-4 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden
