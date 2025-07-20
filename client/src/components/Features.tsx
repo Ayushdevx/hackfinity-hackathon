@@ -111,7 +111,7 @@ const Features = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 mb-12"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -127,11 +127,11 @@ const Features = () => {
               className="group relative"
             >
               <div className={`
-                relative p-8 rounded-3xl bg-gradient-to-br ${feature.gradient}
+                relative p-3 sm:p-4 md:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${feature.gradient}
                 shadow-2xl hover:shadow-3xl transition-all duration-300
                 border border-white/10 backdrop-blur-sm
                 transform-gpu perspective-1000
-                min-h-[340px] h-[340px] w-full flex flex-col
+                aspect-square min-h-[160px] sm:min-h-[220px] md:min-h-[260px] max-h-[220px] sm:max-h-[260px] w-full flex flex-col
               `}>
                 {/* Animated background glow */}
                 <motion.div
@@ -151,22 +151,34 @@ const Features = () => {
 
                 <div className="relative z-10">
                   {/* Icon and Stats */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon className="w-8 h-8 text-white" />
+                  <div className="flex items-center justify-between mb-2 sm:mb-4">
+                    <div className="flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-xl sm:rounded-2xl backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                      <feature.icon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
                     </div>
                     <div className="text-right">
-                      <div className="font-body text-white/60 text-sm">Value</div>
-                      <div className="font-title text-white font-bold text-lg">{feature.stats}</div>
+                      <div className="font-body text-white/60 text-xs sm:text-sm">Value</div>
+                      <div className="font-title text-white font-bold text-xs sm:text-base">{feature.stats}</div>
                     </div>
                   </div>
 
-                  <h3 className="font-title text-2xl font-bold text-white mb-4">
+                  <h3 className="font-title text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">
                     {feature.title}
                   </h3>
 
-                  <p className="font-body text-white/90 leading-relaxed">
-                    {feature.description}
+                  <p className="font-body text-white/90 text-xs sm:text-sm leading-snug">
+                    {feature.title === "Massive ₹100K+ Prize Pool"
+                      ? "Life-changing rewards: cash, funding, jobs, and global recognition."
+                      : feature.title === "Premium Swag & Perks"
+                      ? "Exclusive swag, tech gadgets, licenses, and VIP event access."
+                      : feature.title === "World-Class Mentors"
+                      ? "Guidance from CTOs, AI researchers, and unicorn founders."
+                      : feature.title === "Global Innovation Network"
+                      ? "Join 10,000+ top devs, VCs, and innovators from 50+ countries."
+                      : feature.title === "Next-Gen AI Challenges"
+                      ? "Tackle AGI, quantum, and breakthrough tech challenges."
+                      : feature.title === "Unlimited Innovation Potential"
+                      ? "No limits: $1M+ in credits, APIs, and experimental tech."
+                      : feature.description}
                   </p>
                 </div>
 

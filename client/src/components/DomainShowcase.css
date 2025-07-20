@@ -1,0 +1,27 @@
+.calendar-container {
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 rgba(31, 41, 55, 0.10), 0 2px 8px 0 rgba(31, 41, 55, 0.06);
+  border: 1.5px solid #e5e7eb;
+  background: linear-gradient(to bottom, #fff 0%, #f3f4f6 100%);
+  overflow: hidden;
+}
+
+.calendar-cell {
+  border-right: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  min-width: 4.5rem;
+  min-height: 5rem;
+  background: #fff;
+  transition: background 0.2s;
+}
+.calendar-cell:last-child {
+  border-right: none;
+}
+
+/* Ring binder effect (handled inline in JSX for now) */
+
+/* Remove previous glow and sparkles */
+.animate-glow, .flip-number {
+  animation: none !important;
+  box-shadow: none !important;
+} 

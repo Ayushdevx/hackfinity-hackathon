@@ -244,7 +244,7 @@ const ContactForm = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                      <p className="text-purple-300">{item.info}</p>
+                      <p className="text-purple-300 break-all inline-block">{item.info}</p>
                       <p className="text-gray-400 text-sm">{item.subinfo}</p>
                     </div>
                   </motion.div>

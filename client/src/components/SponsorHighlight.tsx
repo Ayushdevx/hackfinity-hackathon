@@ -67,27 +67,27 @@ const SponsorHighlight = () => {
               `}>
                 {/* Glow effect */}
                 <div className={`
-                  absolute inset-0 rounded-3xl bg-gradient-to-br ${sponsor.gradient}
+                  absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${sponsor.gradient}
                   opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300
                 `} />
 
                 <div className="relative z-10">
                   {/* Tier Badge */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2 backdrop-blur-sm">
+                    <div className="flex items-center space-x-2 bg-white/20 rounded-full px-2 sm:px-4 py-1 sm:py-2 backdrop-blur-sm">
                       <Award className="w-4 h-4 text-yellow-300" />
-                      <span className="text-white font-semibold text-sm">{sponsor.tier}</span>
+                      <span className="text-white font-semibold text-xs sm:text-sm">{sponsor.tier}</span>
                     </div>
                     <div className="flex space-x-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-300 fill-current" />
+                        <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-300 fill-current" />
                       ))}
                     </div>
                   </div>
 
                   {/* Logo Placeholder - Using styled div since we can't load external images */}
-                  <div className="w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
-                    <span className="text-white font-bold text-2xl">
+                  <div className="w-10 h-10 sm:w-24 sm:h-24 bg-white/20 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 backdrop-blur-sm">
+                    <span className="text-white font-bold text-base sm:text-2xl">
                       {sponsor.name.substring(0, 2).toUpperCase()}
                     </span>
                   </div>
@@ -106,7 +106,7 @@ const SponsorHighlight = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-colors duration-200 backdrop-blur-sm"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-white px-6 py-3 text-base md:px-4 md:py-2 md:text-base rounded-full transition-colors duration-200 backdrop-blur-sm"
                   >
                     <span>Visit Website</span>
                     <ExternalLink className="w-4 h-4" />
@@ -114,11 +114,11 @@ const SponsorHighlight = () => {
                 </div>
 
                 {/* Floating elements */}
-                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                <div className="absolute inset-0 overflow-hidden rounded-2xl sm:rounded-3xl">
                   {[...Array(3)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-2 h-2 bg-white/20 rounded-full"
+                      className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-white/20 rounded-full"
                       style={{
                         left: `${30 + i * 20}%`,
                         top: `${40 + i * 15}%`,

@@ -259,7 +259,7 @@ const DomainShowcase = () => {
             </div>
             
             <div className="relative z-10">
-              <div className="flex items-center justify-center mb-8">
+              <div className="flex flex-col items-center justify-center mb-8">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -267,7 +267,7 @@ const DomainShowcase = () => {
                   <Calendar className="w-10 h-10 text-purple-400 mr-4" />
                 </motion.div>
                 <motion.h3 
-                  className="font-title text-3xl md:text-4xl font-bold text-white"
+                  className="font-title text-3xl md:text-4xl font-bold text-white text-center"
                   animate={{ scale: [1, 1.02, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -396,7 +396,7 @@ const DomainShowcase = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-8"
         >
           {domains.map((domain, index) => (
             <motion.div
@@ -409,12 +409,12 @@ const DomainShowcase = () => {
               className="group relative"
             >
               <div className={`
-                relative p-8 rounded-3xl bg-gradient-to-br ${domain.gradient}/10
+                relative p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${domain.gradient}/10
                 backdrop-blur-xl border border-white/10 shadow-2xl
-                group-hover:border-white/20 transition-all duration-500 overflow-hidden h-80
+                group-hover:border-white/20 transition-all duration-500 overflow-hidden h-28 sm:h-40 md:h-80
               `}>
                 {/* Emoji Icon with 3D Background */}
-                <div className="relative h-24 mb-6 flex items-center justify-center">
+                <div className="relative h-8 sm:h-16 md:h-24 mb-2 sm:mb-6 flex items-center justify-center">
                   {/* 3D Background Effect */}
                   <div className="absolute inset-0 opacity-30">
                     <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
@@ -423,7 +423,6 @@ const DomainShowcase = () => {
                       <domain.component3D />
                     </Canvas>
                   </div>
-                  
                   {/* Emoji Icon Foreground */}
                   <motion.div
                     whileHover={{ 
@@ -435,23 +434,21 @@ const DomainShowcase = () => {
                   >
                     <EmojiIcon 
                       symbol={domain.emoji}
-                      size="text-6xl md:text-7xl"
+                      size="text-xl sm:text-4xl md:text-6xl lg:text-7xl"
                       glow={true}
                       className="group-hover:scale-110 transition-transform duration-300"
                     />
                   </motion.div>
                 </div>
-
                 {/* Content */}
                 <div className="relative z-10">
-                  <h3 className="font-title text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <h3 className="font-title text-xs sm:text-base md:text-xl font-bold text-white mb-1 sm:mb-3 group-hover:text-purple-300 transition-colors">
                     {domain.title}
                   </h3>
-                  <p className="font-body text-gray-300 text-sm leading-relaxed">
+                  <p className="font-body text-gray-300 text-[10px] sm:text-xs md:text-sm leading-relaxed">
                     {domain.description}
                   </p>
                 </div>
-
                 {/* Hover glow effect */}
                 <motion.div 
                   className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${domain.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}

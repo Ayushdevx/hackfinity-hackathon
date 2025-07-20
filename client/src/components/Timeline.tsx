@@ -25,6 +25,14 @@ const Timeline = () => {
   });
   const [cardsInView, setCardsInView] = useState(0);
   const totalCards = 7; // Number of events
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Real-time countdown
   useEffect(() => {
@@ -269,7 +277,7 @@ const Timeline = () => {
 
             <div className="relative z-10">
               <motion.h3
-                className="text-3xl font-bold text-white mb-6 flex items-center justify-center space-x-3"
+                className="text-3xl font-bold text-white mb-6 flex items-center justify-center space-x-3 text-center md:text-left"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -382,7 +390,7 @@ const Timeline = () => {
         <div className="relative">
           {/* Animated central timeline synced with cards */}
           <motion.div
-            className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full"
+            className="absolute left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500 rounded-full"
             style={{ height: "100%", originY: 0 }}
             animate={{ scaleY: cardsInView / totalCards }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -395,11 +403,12 @@ const Timeline = () => {
               useEffect(() => {
                 if (inView) setCardsInView((prev) => (prev < index + 1 ? index + 1 : prev));
               }, [inView, index]);
+              let initialX = index % 2 === 0 ? (isMobile ? -80 : -100) : (isMobile ? 80 : 100);
               return (
                 <motion.div
                   key={event.title}
                   ref={cardRef}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  initial={{ opacity: 0, x: initialX }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{
                     duration: 0.8,
@@ -409,12 +418,11 @@ const Timeline = () => {
                   }}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                    } flex-col`}
+                  className={`relative flex items-center flex-col w-full ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
-                  {/* Animated Timeline Dot */}
+                  {/* Timeline Dot */}
                   <motion.div
-                    className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
+                    className="absolute left-1/2 -translate-x-1/2 -translate-y-6 md:translate-y-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 z-20 shadow-lg"
                     whileHover={{ scale: 1.5 }}
                     animate={{
                       boxShadow: hoveredIndex === index
@@ -430,12 +438,8 @@ const Timeline = () => {
                       transition={{ duration: 0.3 }}
                     />
                   </motion.div>
-
-                  {/* Enhanced Event Card */}
-                  <div className={`
-                    w-full md:w-5/12 ml-20 md:ml-0 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
-                    }
-                  `}>
+                  {/* Card */}
+                  <div className={`w-[65vw] max-w-[200px] md:w-5/12 md:max-w-none ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} ${index % 2 === 0 ? 'translate-x-[-24vw] md:translate-x-0' : 'translate-x-[24vw] md:translate-x-0'} ml-0 md:ml-0`}>
                     <motion.div
                       whileHover={{
                         scale: 1.03,
@@ -445,8 +449,7 @@ const Timeline = () => {
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.3 }}
                       onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
-                      className={`
-                        relative p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
+                      className={`relative p-1 md:p-8 rounded-3xl bg-gradient-to-br ${event.gradient}/20
                         backdrop-blur-xl border border-white/10 shadow-2xl
                         group overflow-hidden cursor-pointer
                         ${event.status === 'highlight' ? 'ring-2 ring-yellow-400/50' : ''}
@@ -462,17 +465,16 @@ const Timeline = () => {
                       {/* Content */}
                       <div className="relative z-10">
                         {/* Header */}
-                        <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center justify-between mb-1 md:mb-6">
                           <motion.div
-                            className="flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
+                            className="flex items-center justify-center w-6 h-6 md:w-16 md:h-16 bg-white/10 rounded-2xl backdrop-blur-sm"
                             whileHover={{ rotate: 360 }}
                             transition={{ duration: 0.6 }}
                           >
-                            <event.icon className="w-8 h-8 text-white" />
+                            <event.icon className="w-4 h-4 md:w-8 md:h-8 text-white" />
                           </motion.div>
                           <div className="flex flex-col items-end">
-                            <div className={`
-                              px-4 py-2 rounded-full text-sm font-bold mb-2
+                            <div className={`px-1 py-0.5 md:px-4 md:py-2 rounded-full text-[9px] md:text-sm font-bold mb-0.5 md:mb-2
                               ${event.status === 'highlight' ? 'bg-yellow-400 text-black' :
                                 event.status === 'ongoing' ? 'bg-green-400 text-black' :
                                   'bg-white/20 text-white'
@@ -481,7 +483,7 @@ const Timeline = () => {
                               {event.status === 'highlight' ? '🔥 MAIN EVENT' :
                                 event.status === 'ongoing' ? '⚡ LIVE NOW' : '🚀 UPCOMING'}
                             </div>
-                            <div className="text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full">
+                            <div className="text-[8px] md:text-xs text-cyan-400 font-semibold bg-cyan-500/10 px-1 md:px-3 py-0.5 rounded-full">
                               {event.countdown}
                             </div>
                           </div>
@@ -489,46 +491,46 @@ const Timeline = () => {
 
                         {/* Title */}
                         <motion.h3
-                          className="font-title text-2xl font-bold text-white mb-4"
+                          className="font-title text-xs md:text-2xl font-bold text-white mb-1 md:mb-4"
                           animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
                         >
                           {event.title}
                         </motion.h3>
 
                         {/* Date & Time */}
-                        <div className="flex items-center space-x-4 mb-4">
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="w-4 h-4 text-purple-400" />
-                            <span className="text-white font-semibold">
+                        <div className="flex items-center space-x-0.5 md:space-x-4 mb-1 md:mb-4">
+                          <div className="flex items-center space-x-0.5 md:space-x-2">
+                            <Calendar className="w-2 h-2 md:w-4 md:h-4 text-purple-400" />
+                            <span className="text-[9px] md:text-base text-white font-semibold">
                               {event.date}
                             </span>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <Clock className="w-4 h-4 text-cyan-400" />
-                            <span className="text-white/80 text-sm">
+                          <div className="flex items-center space-x-0.5 md:space-x-2">
+                            <Clock className="w-2 h-2 md:w-4 md:h-4 text-cyan-400" />
+                            <span className="text-[9px] md:text-sm text-white/80">
                               {event.time}
                             </span>
                           </div>
                         </div>
 
                         {/* Description */}
-                        <p className="font-body text-white/90 text-base leading-relaxed mb-6">
+                        <p className="font-body text-[9px] md:text-base text-white/90 leading-relaxed mb-1 md:mb-6">
                           {event.description}
                         </p>
 
                         {/* Perks */}
-                        <div className="space-y-2">
-                          <div className="text-sm font-semibold text-purple-400 mb-3">💎 EXCLUSIVE PERKS:</div>
-                          <div className="grid grid-cols-1 gap-2">
+                        <div className="space-y-0.5 md:space-y-2">
+                          <div className="text-[9px] md:text-sm font-semibold text-purple-400 mb-0.5 md:mb-3">💎 EXCLUSIVE PERKS:</div>
+                          <div className="grid grid-cols-1 gap-0.5 md:gap-2">
                             {event.perks.map((perk, perkIndex) => (
                               <motion.div
                                 key={perkIndex}
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: perkIndex * 0.1 }}
-                                className="flex items-center space-x-2 text-white/80 text-sm"
+                                className="flex items-center space-x-0.5 md:space-x-2 text-white/80 text-[9px] md:text-sm"
                               >
-                                <Star className="w-3 h-3 text-yellow-400" />
+                                <Star className="w-1.5 h-1.5 md:w-3 md:h-3 text-yellow-400" />
                                 <span>{perk}</span>
                               </motion.div>
                             ))}

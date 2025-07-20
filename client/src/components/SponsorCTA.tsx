@@ -65,7 +65,7 @@ const SponsorCTA = () => {
       icon: Brain,
       title: "Elite Talent Pool Access",
       description: "Direct recruitment access to 10,000+ top-tier developers, AI researchers, and startup founders from MIT, Stanford, Google, and Microsoft",
-      value: "10000042692749000K+ Elite Talent",
+      value: "1000K+ Elite Talent",
       metric: "98% employed within 6 months",
       gradient: "from-purple-500 to-violet-600",
       animation: "pulse"
@@ -396,15 +396,14 @@ const SponsorCTA = () => {
                   relative p-8 rounded-3xl overflow-hidden
                   border-2 ${hoveredBenefit === index ? 'border-yellow-400' : 'border-white/10'}
                   bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900
-                  shadow-2xl transition-all duration-500 h-full
-                  min-h-[340px] md:min-h-[340px] lg:min-h-[340px] w-full flex flex-col
+                  shadow-2xl transition-all duration-500 h-full flex flex-col
                 `}>
 
                   {/* Card content wrapper */}
                   <div className="relative z-20">
                     {/* Animated icon */}
                     <motion.div
-                      className={`flex items-center justify-center w-20 h-20 bg-gradient-to-br ${benefit.gradient} rounded-3xl mx-auto mb-6 shadow-xl`}
+                      className={`flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 bg-gradient-to-br ${benefit.gradient} rounded-xl sm:rounded-2xl mx-auto mb-2 sm:mb-4 shadow-xl`}
                       animate={
                         selectedTier === index ? { scale: [1, 1.1, 1] } : {}
                       }
@@ -419,13 +418,13 @@ const SponsorCTA = () => {
                     </motion.div>
 
                     {/* Card Title */}
-                    <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+                    <h3 className="font-bold text-lg text-white mb-2 text-center">
                       {benefit.title}
                     </h3>
 
                     {/* Value highlight */}
                     <motion.div
-                      className="text-3xl font-bold text-white mb-3 text-center"
+                      className="text-[10px] sm:text-xs md:text-2xl font-bold text-white mb-1 sm:mb-3 text-center"
                       animate={{
                         color: selectedTier === index ? "#fbbf24" : "#ffffff"
                       }}
@@ -433,11 +432,11 @@ const SponsorCTA = () => {
                       {benefit.value}
                     </motion.div>
 
-                    <h4 className="font-title text-xl font-bold text-white mb-4 text-center group-hover:text-yellow-300 transition-colors">
+                    <h4 className="font-title text-[8px] sm:text-xs md:text-base font-bold text-white mb-1 sm:mb-4 text-center group-hover:text-yellow-300 transition-colors">
                       {benefit.title}
                     </h4>
 
-                    <p className="font-body text-gray-300 text-sm leading-relaxed mb-4 text-center">
+                    <p className="text-base text-gray-300 text-center">
                       {benefit.description}
                     </p>
 
@@ -558,14 +557,14 @@ const SponsorCTA = () => {
                 className={`
                   group relative cursor-pointer
                   ${tier.highlighted ? 'lg:scale-110' : ''}
-                  ${selectedTier === index ? 'ring-4 ring-yellow-400 ring-opacity-100 rounded-3xl' : ''}
-                  pt-36
+                  ${selectedTier === index ? 'ring-2 ring-yellow-100 ring-opacity-0 rounded-3xl' : ''}
+                  pt-0
                 `}>
                 {/* Animated background glow */}
                 <motion.div
-                  className={`absolute left-0 right-0 bottom-0 bg-gradient-to-br ${tier.gradient} opacity-0 blur-xl h-[85%] rounded-b-3xl`}
+                  className={`absolute left-0 right-0 bottom-0 top-24 bg-gradient-to-br ${tier.gradient} opacity-0 blur-xl rounded-b-3xl`}
                   animate={{
-                    opacity: selectedTier === index ? 0.4 : tier.highlighted ? 0.2 : 0.1,
+                    opacity: selectedTier === index ? 0.15 : tier.highlighted ? 0.08 : 0.04,
                     scale: selectedTier === index ? 1.2 : 1
                   }}
                   transition={{ duration: 0.5 }}
@@ -573,12 +572,12 @@ const SponsorCTA = () => {
 
                 {/* Place the label badges here as the first child */}
                 <div className={`
-                    relative z-10 h-full rounded-3xl p-8 border-2 backdrop-blur-sm
-                    ${tier.highlighted ? 'border-yellow-400/50' : 'border-white/20'}
+                    relative z-10 rounded-3xl p-8 border-2 backdrop-blur-sm
+                    ${selectedTier === index ? 'border-4 border-yellow-400' : 'border-white/20'}
                     ${tier.tier === 'legendary' ? 'bg-gradient-to-br from-yellow-900/80 via-orange-900/80 to-red-900/80' :
                     tier.tier === 'innovation' ? 'bg-gradient-to-br from-purple-900/80 via-pink-900/80 to-rose-900/80' :
                       'bg-gradient-to-br from-blue-900/80 via-cyan-900/80 to-teal-900/80'}
-                  pt-36
+                  pt-20
                   `}>
                   {tier.highlighted && (
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-1 w-full max-w-[180px] mb-4 pt-4">
@@ -698,7 +697,7 @@ const SponsorCTA = () => {
                   {/* Features list with animations */}
                   <motion.ul
                     className="space-y-3 mb-12"
-                    animate={{ height: selectedTier === index ? "auto" : "270px" }}
+                    animate={{ height: selectedTier === index ? 'auto' : '270px' }}
                   >
                     {tier.features.slice(0, selectedTier === index ? tier.features.length : 5).map((feature, featureIndex) => (
                       <motion.li
@@ -707,7 +706,7 @@ const SponsorCTA = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: featureIndex * 0.1 }}
-                        whileHover={{ x: 5, color: "#fbbf24" }}
+                        whileHover={{ x: 5, color: '#fbbf24' }}
                       >
                         <motion.div
                           className="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"
@@ -717,13 +716,22 @@ const SponsorCTA = () => {
                         <span className="font-body text-sm leading-relaxed">{feature}</span>
                       </motion.li>
                     ))}
-
                     {tier.features.length > 5 && selectedTier !== index && (
                       <motion.li
                         className="text-yellow-400 font-semibold text-sm cursor-pointer mb-4"
                         whileHover={{ scale: 1.05 }}
+                        onClick={e => { e.stopPropagation(); setSelectedTier(index); }}
                       >
                         + {tier.features.length - 5} more amazing features...
+                      </motion.li>
+                    )}
+                    {tier.features.length > 5 && selectedTier === index && (
+                      <motion.li
+                        className="text-yellow-600 font-semibold text-sm cursor-pointer mb-4"
+                        whileHover={{ scale: 1.05 }}
+                        onClick={e => { e.stopPropagation(); setSelectedTier(null); }}
+                      >
+                        Show less features
                       </motion.li>
                     )}
                   </motion.ul>
@@ -739,7 +747,7 @@ const SponsorCTA = () => {
                       transition={{ duration: 3, repeat: Infinity }}
                     />
                     <div className="relative z-10">
-                      <div className="text-green-400 text-xs font-bold mb-2 flex items-center">
+                      <div className="text-green-200 text-xs font-bold mb-2 flex items-center">
                         <Trophy className="w-4 h-4 mr-2" />
                         💰 ROI GUARANTEE
                       </div>
@@ -984,7 +992,7 @@ const SponsorCTA = () => {
                 boxShadow: "0 20px 40px rgba(139, 92, 246, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
-              className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl transition-all duration-300 overflow-hidden"
+              className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-base md:text-xl shadow-2xl transition-all duration-300 overflow-hidden"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -992,24 +1000,24 @@ const SponsorCTA = () => {
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <span className="relative z-10 flex items-center space-x-3">
-                <Rocket className="w-6 h-6" />
+                <Rocket className="w-4 h-4 md:w-6 md:h-6" />
                 <span>Become a Legend Sponsor</span>
-                <Diamond className="w-6 h-6" />
+                <Diamond className="w-4 h-4 md:w-6 md:h-6" />
               </span>
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.05, borderColor: "#fbbf24" }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-10 py-5 rounded-full font-bold text-xl transition-all duration-300 backdrop-blur-sm group"
+              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-base md:text-xl transition-all duration-300 backdrop-blur-sm group"
             >
-              <span className="flex items-center space-x-3">
+              <span className="flex items-center justify-center w-full space-x-3">
                 <span>Download Sponsorship Kit</span>
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Star className="w-6 h-6" />
+                  <Star className="w-4 h-4 md:w-6 md:h-6" />
                 </motion.div>
               </span>
             </motion.button>
