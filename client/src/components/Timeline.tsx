@@ -25,7 +25,7 @@ const Timeline = () => {
 
   // Real-time countdown
   useEffect(() => {
-    const targetDate = new Date('2025-10-18T09:00:00Z').getTime();
+    const targetDate = new Date('2025-08-28T00:00:00Z').getTime();
     
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -47,94 +47,94 @@ const Timeline = () => {
   const events = [
     {
       icon: Calendar,
-      title: "🚀 Early Bird Registration",
-      date: "September 1, 2025",
+      title: "🚀 Registration Opens",
+      date: "August 28, 2025",
       time: "12:00 AM UTC",
-      description: "Secure your spot with exclusive early bird perks, mentor previews, and premium swag packages worth $200+",
+      description: "Submit your team and project idea. Start building your Agentic AI solution that will reshape the future",
       status: "upcoming",
       gradient: "from-blue-500 to-cyan-500",
-      countdown: "120 days left",
-      perks: ["🎁 Premium Swag Kit ($200 value)", "🚀 Early Mentor Access", "💎 VIP Discord Channel", "🎯 Priority Team Matching"],
-      participants: "2,500+ registered",
-      highlight: "💫 50% OFF until Sept 15th!"
+      countdown: "1 day left",
+      perks: ["🤖 Agentic AI Resources", "🚀 Team Formation Tools", "💎 Mentor Access", "🎯 Challenge Guidelines"],
+      participants: "Global Registration",
+      highlight: "💫 Team up with innovators worldwide!"
     },
     {
       icon: Users,
-      title: "🤝 Team Formation & Networking",
-      date: "October 1 - 15, 2025",
+      title: "🤝 Team Formation & Development",
+      date: "August 28 - September 15, 2025",
       time: "Continuous",
-      description: "Join exclusive Discord channels, attend virtual meetups, and form dream teams with our revolutionary AI matching algorithm",
+      description: "Find your perfect teammates, attend workshops, get mentorship, and start developing your autonomous AI solution",
       status: "upcoming",
       gradient: "from-green-500 to-emerald-500",
-      countdown: "90 days left",
-      perks: ["� AI-Powered Team Matching", "🎪 Virtual Networking Events", "💬 Exclusive Discord Access", "🌟 Mentor Speed Dating"],
-      participants: "5,000+ networking",
-      highlight: "🔥 AI matches teams with 95% success rate!"
+      countdown: "Development Phase",
+      perks: ["👥 Team Matching", "🎪 Live Workshops", "💬 Mentor Sessions", "🌟 AI Expert Guidance"],
+      participants: "Active Development",
+      highlight: "🔥 Build agents that act, adapt, and evolve!"
     },
     {
       icon: FileText,
-      title: "🎯 Challenge Tracks Release",
-      date: "October 16, 2025",
-      time: "6:00 PM UTC",
-      description: "Unlock 8 revolutionary challenge tracks: AGI, Quantum AI, Neural Interfaces, and more cutting-edge frontiers that will shape the future",
+      title: "🎯 Judging & Evaluation",
+      date: "September 16 - 19, 2025",
+      time: "Evaluation Period",
+      description: "Expert judges review submissions based on innovation, technical implementation, impact, and presentation quality",
       status: "upcoming",
       gradient: "from-purple-500 to-violet-500",
-      countdown: "77 days left",
-      perks: ["🧠 8 Challenge Tracks", "🎯 $100K Prize Distribution", "🚀 Startup Founder Judges", "💡 Exclusive Problem Sets"],
-      participants: "10,000+ participants",
-      highlight: "💰 Biggest prize pool in hackathon history!"
+      countdown: "Final Review",
+      perks: ["🧠 Expert Panel Review", "🎯 Multiple Criteria", "🚀 Industry Leaders", "💡 Comprehensive Evaluation"],
+      participants: "All Submissions",
+      highlight: "💰 ₹100K prize pool up for grabs!"
     },
     {
       icon: Code,
-      title: "🔥 MAIN EVENT: 24H Hack",
-      date: "October 18, 2025",
-      time: "9:00 AM UTC",
-      description: "The ultimate 24-hour coding marathon with live mentorship, real-time leaderboards, breakthrough innovations, and legendary moments",
+      title: "🔥 MAIN EVENT: Submission Deadline",
+      date: "September 15, 2025",
+      time: "11:59 PM UTC",
+      description: "Final deadline for submitting your Agentic AI solution. Showcase your autonomous agents that demonstrate true innovation",
       status: "highlight",
       gradient: "from-orange-500 to-red-500",
-      countdown: "75 days left",
-      perks: ["⚡ Live Coding Streams", "🏆 Real-time Leaderboard", "🎮 Surprise Challenges", "🌟 Celebrity Guest Judges"],
-      participants: "10,000+ hackers",
-      highlight: "🌍 Livestreamed to 500K+ viewers worldwide!"
+      countdown: "Final Deadline",
+      perks: ["⚡ Demo Video Required", "🏆 Complete Documentation", "🎮 Source Code Access", "🌟 Live Demo Links"],
+      participants: "All Teams Submit",
+      highlight: "🌍 Show the world your Agentic AI innovation!"
     },
     {
       icon: Lightbulb,
-      title: "🧠 Expert Mentorship Hub",
+      title: "🧠 Mentorship & Workshops",
       date: "Throughout Event",
       time: "24/7 Available",
-      description: "Access to 100+ industry legends including OpenAI researchers, unicorn founders, VCs, and the brightest minds in AI",
+      description: "Access expert guidance on Agentic AI, autonomous systems, and cutting-edge automation frameworks",
       status: "ongoing",
       gradient: "from-yellow-500 to-orange-500",
       countdown: "Always Active",
-      perks: ["🧠 100+ Expert Mentors", "💡 1-on-1 Sessions", "📈 VC Office Hours", "🚀 Instant Feedback"],
-      participants: "Unlimited access",
-      highlight: "🌟 Sam Altman confirmed as keynote mentor!"
+      perks: ["🧠 AI Experts", "💡 1-on-1 Sessions", "📈 Technical Guidance", "🚀 Real-time Support"],
+      participants: "Unlimited Access",
+      highlight: "🌟 Industry leaders from Rabobank, International Paper!"
     },
     {
       icon: Trophy,
-      title: "👑 Grand Finale Judging",
-      date: "October 19, 2025",
-      time: "10:00 AM - 2:00 PM UTC",
-      description: "Present to legendary judges: Sam Altman, Demis Hassabis, top VCs, and industry pioneers. Live-streamed to 100K+ viewers with instant funding offers",
+      title: "👑 Winner Announcement",
+      date: "September 20, 2025",
+      time: "Results Day",
+      description: "Grand prize winners announced! ₹50K for 1st place plus mentorship, recognition, and career opportunities",
       status: "upcoming",
       gradient: "from-pink-500 to-rose-500",
-      countdown: "74 days left",
-      perks: ["🌟 Celebrity Judges", "📺 100K+ Live Viewers", "💰 Instant Funding Offers", "🚀 Media Coverage"],
-      participants: "Top 50 teams",
-      highlight: "💎 $50K grand prize + accelerator spots!"
+      countdown: "Results Day",
+      perks: ["🌟 Cash Prizes", "📺 Public Recognition", "💰 Career Opportunities", "🚀 Industry Connections"],
+      participants: "Winners Celebrated",
+      highlight: "💎 ₹50K grand prize + exclusive benefits!"
     },
     {
       icon: PartyPopper,
-      title: "🎉 Victory Celebration",
-      date: "October 19, 2025",
-      time: "4:00 PM UTC",
-      description: "Epic closing ceremony with winner announcements, startup launch opportunities, exclusive after-party, and the beginning of legendary stories",
+      title: "🎉 Community Celebration",
+      date: "September 20, 2025",
+      time: "Post-Results",
+      description: "Join the global celebration, network with fellow innovators, and become part of the Agentic AI community",
       status: "upcoming",
       gradient: "from-indigo-500 to-purple-500",
-      countdown: "74 days left",
-      perks: ["🎊 Global Celebration", "🚀 Startup Launches", "🎉 Exclusive After-party", "🌟 Networking Gala"],
-      participants: "All participants",
-      highlight: "🥳 Party streamed across 10 cities worldwide!"
+      countdown: "Celebration Time",
+      perks: ["🎊 Global Community", "🚀 Networking", "🎉 Future Opportunities", "🌟 Continued Learning"],
+      participants: "Entire Community",
+      highlight: "🥳 The future of Agentic AI starts here!"
     }
   ];
 
@@ -233,7 +233,7 @@ const Timeline = () => {
             transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
           >
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              Epic Journey
+              HackOmatic
             </span>
             <br />
             <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
@@ -248,7 +248,7 @@ const Timeline = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Your legendary journey from idea to breakthrough. Every moment crafted for maximum <span className="text-yellow-400 font-bold">impact</span> and <span className="text-cyan-400 font-bold">innovation</span>.
+            Build the future of <span className="text-purple-400 font-bold">Agentic AI</span> from August 28 to September 20. Shape autonomous systems that <span className="text-cyan-400 font-bold">act, adapt, and evolve</span>.
           </motion.p>
 
           {/* Live Countdown Widget */}

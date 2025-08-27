@@ -18,8 +18,8 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Home", href: "#hero" },
-    { name: "Domains", href: "#domains" },
-    { name: "Sponsors", href: "#sponsors" },
+    { name: "Challenge", href: "#domains" },
+    { name: "Prizes", href: "#sponsors" },
     { name: "Features", href: "#features" },
     { name: "Timeline", href: "#timeline" },
     { name: "Contact", href: "#contact" },
@@ -51,7 +51,7 @@ const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">H</span>
             </div>
-            <span className="font-title text-white font-bold text-xl">Hackfinity</span>
+            <span className="font-title text-white font-bold text-xl">HackOmatic</span>
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -9,7 +9,7 @@ const ContactForm = () => {
     email: "",
     company: "",
     message: "",
-    type: "sponsor"
+    type: "participant"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -28,7 +28,7 @@ const ContactForm = () => {
     
     // Reset form after success
     setTimeout(() => {
-      setFormData({ name: "", email: "", company: "", message: "", type: "sponsor" });
+      setFormData({ name: "", email: "", company: "", message: "", type: "participant" });
       setSubmitStatus("idle");
     }, 3000);
   };
@@ -44,8 +44,8 @@ const ContactForm = () => {
     {
       icon: Mail,
       title: "Email Us",
-      info: "hackfinity.innovation@gmail.com",
-      subinfo: "hackfinity.innovation@gmail.com"
+      info: "hackomatic.ai@gmail.com",
+      subinfo: "support@hackomatic.ai"
     },
     {
       icon: Phone,
@@ -74,11 +74,11 @@ const ContactForm = () => {
         >
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Get in Touch
+              Join HackOmatic
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to sponsor or participate? We'd love to hear from you!
+            Ready to build the future of Agentic AI? Get support, find teammates, or ask questions!
           </p>
         </motion.div>
 
@@ -154,10 +154,10 @@ const ContactForm = () => {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-white/10 border border-gray-600 rounded-xl text-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-colors duration-200 backdrop-blur-sm"
                   >
+                    <option value="participant" className="bg-gray-800">Participant Support</option>
+                    <option value="team" className="bg-gray-800">Team Formation</option>
+                    <option value="technical" className="bg-gray-800">Technical Question</option>
                     <option value="sponsor" className="bg-gray-800">Sponsorship Inquiry</option>
-                    <option value="participant" className="bg-gray-800">Participant Question</option>
-                    <option value="media" className="bg-gray-800">Media/Press</option>
-                    <option value="partnership" className="bg-gray-800">Partnership</option>
                     <option value="other" className="bg-gray-800">Other</option>
                   </select>
                 </div>
@@ -256,7 +256,7 @@ const ContactForm = () => {
             <div className="bg-gradient-to-br from-cyan-900/30 to-purple-900/30 rounded-3xl p-8 border border-cyan-500/20 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-white mb-4">Quick Response</h3>
               <p className="text-gray-300 mb-6">
-                We typically respond to sponsorship inquiries within 24 hours and general inquiries within 48 hours.
+                We typically respond to participant inquiries within 24 hours and support requests within 48 hours.
               </p>
               
               <div className="flex items-center space-x-2 text-green-400">

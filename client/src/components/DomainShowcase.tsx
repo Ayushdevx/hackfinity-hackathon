@@ -121,58 +121,58 @@ const DomainShowcase = () => {
 
   const domains = [
     {
-      emoji: "🧠",
-      title: "Artificial Intelligence",
-      description: "Build intelligent systems that learn and adapt",
+      emoji: "⚙️",
+      title: "Workflow Automation",
+      description: "Build intelligent agents that manage tasks with minimal human input",
       gradient: "from-purple-500 to-pink-500",
       component3D: AI3DIcon
     },
     {
-      emoji: "⚙️",
-      title: "Machine Learning",
-      description: "Create algorithms that improve through experience",
+      emoji: "🤖",
+      title: "AI Assistants",
+      description: "Next-generation digital companions that understand, plan, and execute",
       gradient: "from-blue-500 to-cyan-500",
       component3D: ML3DIcon
     },
     {
-      emoji: "🔗",
-      title: "Blockchain",
-      description: "Develop decentralized solutions for tomorrow",
+      emoji: "🏭",
+      title: "Industry Disruption",
+      description: "Healthcare diagnostics, fintech decision systems, logistics optimizers",
       gradient: "from-green-500 to-emerald-500",
       component3D: Blockchain3DIcon
     },
     {
-      emoji: "💡",
-      title: "Open Innovation",
-      description: "Collaborate on groundbreaking open-source projects",
+      emoji: "🎓",
+      title: "Education & Learning",
+      description: "Personalized tutors, study companions, or autonomous learning guides",
       gradient: "from-yellow-500 to-orange-500",
       component3D: Innovation3DIcon
     },
     {
-      emoji: "🎓",
-      title: "EdTech",
-      description: "Transform education with technology",
+      emoji: "�",
+      title: "Sustainability & Social Good",
+      description: "Agents tackling climate change, accessibility, or humanitarian issues",
       gradient: "from-indigo-500 to-purple-500",
       component3D: AI3DIcon
     },
     {
-      emoji: "📈",
-      title: "FinTech",
-      description: "Revolutionize financial services",
+      emoji: "�",
+      title: "Multi-Agent Systems",
+      description: "Collaborative AI systems that work together autonomously",
       gradient: "from-emerald-500 to-teal-500",
       component3D: ML3DIcon
     },
     {
-      emoji: "🩺",
-      title: "Healthcare",
-      description: "Innovate solutions for better health outcomes",
+      emoji: "�",
+      title: "Decision Systems",
+      description: "Autonomous AI that makes intelligent decisions in real-time",
       gradient: "from-red-500 to-rose-500",
       component3D: Blockchain3DIcon
     },
     {
       emoji: "✨",
-      title: "Your Domain",
-      description: "Bring your unique ideas to life",
+      title: "Your Innovation",
+      description: "Push boundaries. Be bold. Surprise us with your Agentic AI idea",
       gradient: "from-violet-500 to-purple-500",
       component3D: Innovation3DIcon
     }
@@ -201,7 +201,7 @@ const DomainShowcase = () => {
             transition={{ duration: 1, type: "spring", bounce: 0.4 }}
           >
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              Innovation Domains
+              Challenge Categories
             </span>
           </motion.h2>
           <motion.p 
@@ -211,7 +211,7 @@ const DomainShowcase = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            Explore cutting-edge technologies where breakthrough solutions are born
+            Build autonomous AI agents that act, adapt, and evolve across these domains
           </motion.p>
           
           {/* Enhanced Countdown Timer with Interactive Elements */}

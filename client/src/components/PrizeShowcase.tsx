@@ -130,121 +130,34 @@ const PrizeShowcase = () => {
             </motion.div>
           ))}
         </div>
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
-                scale: 1.03,
-                rotateY: 5,
-                transition: { duration: 0.3 }
-              }}
-              className="group relative"
-            >
-              <div className={`
-                relative p-8 rounded-3xl bg-gradient-to-br ${sponsor.gradient}
-                shadow-2xl hover:shadow-3xl transition-all duration-300
-                border border-white/10 backdrop-blur-sm
-                transform-gpu
-              `}>
-                {/* Glow effect */}
-                <div className={`
-                  absolute inset-0 rounded-3xl bg-gradient-to-br ${sponsor.gradient}
-                  opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300
-                `} />
-                
-                <div className="relative z-10">
-                  {/* Tier Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2 backdrop-blur-sm">
-                      <Award className="w-4 h-4 text-yellow-300" />
-                      <span className="text-white font-semibold text-sm">{sponsor.tier}</span>
-                    </div>
-                    <div className="flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-300 fill-current" />
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Logo Placeholder - Using styled div since we can't load external images */}
-                  <div className="w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
-                    <span className="text-white font-bold text-2xl">
-                      {sponsor.name.substring(0, 2).toUpperCase()}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {sponsor.name}
-                  </h3>
-                  
-                  <p className="text-white/90 mb-6">
-                    {sponsor.description}
-                  </p>
-
-                  <motion.a
-                    href={sponsor.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-colors duration-200 backdrop-blur-sm"
-                  >
-                    <span>Visit Website</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.a>
-                </div>
-
-                {/* Floating elements */}
-                <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 bg-white/20 rounded-full"
-                      style={{
-                        left: `${30 + i * 20}%`,
-                        top: `${40 + i * 15}%`,
-                      }}
-                      animate={{
-                        y: [-20, 20, -20],
-                        x: [-10, 10, -10],
-                        opacity: [0.2, 0.6, 0.2],
-                      }}
-                      transition={{
-                        duration: 3 + i,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Sponsor Benefits Preview */}
+        {/* Additional Benefits */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center bg-gradient-to-r from-purple-900/20 to-cyan-900/20 rounded-3xl p-8 border border-purple-500/20 backdrop-blur-sm"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-center mt-16"
         >
-          <h3 className="text-3xl font-bold text-white mb-4">
-            Why Our Sponsors Love Hackfinity
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">1000+</div>
-              <div className="text-gray-300">Talented Developers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-cyan-400 mb-2">24hrs</div>
-              <div className="text-gray-300">Intensive Innovation</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-pink-400 mb-2">Global</div>
-              <div className="text-gray-300">Reach & Impact</div>
+          <div className="bg-gradient-to-r from-purple-600/20 to-cyan-600/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold text-white mb-4">🌟 All Winners Receive</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="text-purple-300">
+                <div className="text-2xl mb-2">🎖️</div>
+                <p className="text-sm">Digital Certificates</p>
+              </div>
+              <div className="text-cyan-300">
+                <div className="text-2xl mb-2">🚀</div>
+                <p className="text-sm">Startup Support</p>
+              </div>
+              <div className="text-pink-300">
+                <div className="text-2xl mb-2">🤝</div>
+                <p className="text-sm">Networking Access</p>
+              </div>
+              <div className="text-yellow-300">
+                <div className="text-2xl mb-2">📺</div>
+                <p className="text-sm">Media Coverage</p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -253,4 +166,4 @@ const PrizeShowcase = () => {
   );
 };
 
-export default SponsorHighlight;
+export default PrizeShowcase;

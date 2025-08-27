@@ -1,56 +1,56 @@
 import { motion } from "framer-motion";
-import { Trophy, Users, Zap, Gift, Network, Rocket } from "lucide-react";
+import { Trophy, Users, Zap, Brain, Network, Rocket } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
       icon: Trophy,
-      title: "Massive ₹100K+ Prize Pool",
-      description: "Life-changing rewards including cash prizes, startup funding, job offers, and international recognition that can transform your career trajectory",
+      title: "₹100K Prize Pool",
+      description: "Compete for substantial cash prizes, mentorship opportunities, and recognition in the global Agentic AI community",
       gradient: "from-yellow-500 to-orange-500",
-      stats: "₹100K+",
+      stats: "₹100,000",
       delay: 0.1,
       highlight: true
     },
     {
-      icon: Gift,
-      title: "Premium Swag & Perks",
-      description: "Exclusive limited-edition merchandise, latest tech gadgets, premium software licenses, and VIP access to future events",
+      icon: Brain,
+      title: "Agentic AI Focus",
+      description: "Build autonomous agents that truly act, adapt, and evolve - pushing the boundaries of what AI can achieve independently",
       gradient: "from-pink-500 to-rose-500",
-      stats: "Exclusive",
+      stats: "Autonomous",
       delay: 0.2
     },
     {
       icon: Users,
-      title: "World-Class Mentors",
-      description: "Get guidance from CTOs of unicorn startups, AI researchers from top universities, and founders of billion-dollar companies",
+      title: "Expert Judges & Mentors",
+      description: "Get guidance from industry leaders including data scientists, AI researchers, and cybersecurity experts from top companies",
       gradient: "from-blue-500 to-indigo-500",
-      stats: "100+ Industry Leaders",
+      stats: "Industry Experts",
       delay: 0.3
     },
     {
       icon: Network,
-      title: "Global Innovation Network",
-      description: "Join an elite community of 10,000+ top developers, entrepreneurs, VCs, and innovators from 50+ countries",
+      title: "Global Collaboration",
+      description: "Connect with developers, designers, entrepreneurs, and AI enthusiasts from around the world in this international event",
       gradient: "from-green-500 to-emerald-500",
-      stats: "10K+ Elite Network",
+      stats: "International",
       delay: 0.4,
       highlight: true
     },
     {
       icon: Zap,
-      title: "Next-Gen AI Challenges",
-      description: "Tackle cutting-edge problems in AGI, autonomous systems, quantum computing, and breakthrough technologies shaping the future",
+      title: "Hands-on Workshops",
+      description: "Participate in live workshops, mentorship sessions, networking lounges, and industry insights to supercharge your ideas",
       gradient: "from-purple-500 to-violet-500",
-      stats: "Breakthrough Tech",
+      stats: "Live Sessions",
       delay: 0.5
     },
     {
       icon: Rocket,
-      title: "Unlimited Innovation Potential",
-      description: "No restrictions on creativity - access to $1M+ worth of cloud credits, premium APIs, and experimental technologies",
+      title: "Career Opportunities",
+      description: "Access internship and PPO opportunities with partner sponsors, plus networking with potential employers and investors",
       gradient: "from-cyan-500 to-blue-500",
-      stats: "₹1M+ Resources",
+      stats: "Career Boost",
       delay: 0.6,
       highlight: true
     }
@@ -97,11 +97,11 @@ const Features = () => {
         >
           <h2 className="font-title text-5xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Why Choose Hackfinity?
+              Why Join HackOmatic?
             </span>
           </h2>
           <p className="font-body text-xl text-gray-300 max-w-3xl mx-auto">
-            Experience the ultimate hackathon with unmatched opportunities and resources
+            Shape the future of autonomous AI systems with global innovators
           </p>
         </motion.div>
 
